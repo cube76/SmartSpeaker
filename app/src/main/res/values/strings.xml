@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SmartSpeaker</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="lupa_kata_sandi"><u>Lupa kata sandi</u></string>
+    <string name="belum_punya_akun"><u>Belum punya akun</u></string>
+    <string name="saya_menyetujui_syarat_dan_ketentuan_yang_berlaku"><u>Saya menyetujui syarat dan ketentuan yang berlaku</u></string>
+    <string name="sudah_punya_akun"><u>Sudah punya akun</u></string>
+</resources>
