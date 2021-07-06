@@ -78,7 +78,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         app:errorTextColor="@color/yellow"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +91,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -113,13 +113,13 @@
         android:text="@string/lupa_kata_sandi"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/TV_masuk_dengan"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="@+id/btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
     <Button
-        android:id="@+id/TV_masuk_google"
+        android:id="@+id/btn_masuk_google"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
@@ -130,11 +130,11 @@
         android:textAllCaps="false"
         android:textColor="@color/black_primary"
         app:layout_constraintBottom_toTopOf="@+id/TV_no_account"
-        app:layout_constraintEnd_toEndOf="@+id/TV_masuk_hp"
-        app:layout_constraintStart_toStartOf="@+id/TV_masuk_hp" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_masuk_hp"
+        app:layout_constraintStart_toStartOf="@+id/btn_masuk_hp" />
 
     <Button
-        android:id="@+id/TV_masuk_hp"
+        android:id="@+id/btn_masuk_hp"
         android:layout_width="363dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -144,9 +144,9 @@
         android:text="Masuk dengan no Handphone"
         android:textAllCaps="false"
         android:textColor="@color/black_primary"
-        app:layout_constraintBottom_toTopOf="@+id/TV_masuk_google"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_masuk_google"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="@+id/btn_login" />
 
     <TextView
         android:id="@+id/TV_masuk_dengan"
@@ -155,9 +155,9 @@
         android:layout_marginBottom="16dp"
         android:text="Atau masuk dengan"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/TV_masuk_hp"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-        app:layout_constraintStart_toStartOf="@+id/button" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_masuk_hp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="@+id/btn_login" />
 
     <View
         android:id="@+id/view"
@@ -167,7 +167,7 @@
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/TV_masuk_dengan"
         app:layout_constraintEnd_toStartOf="@+id/TV_masuk_dengan"
-        app:layout_constraintStart_toStartOf="@+id/button"
+        app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toTopOf="@+id/TV_masuk_dengan" />
 
     <View
@@ -177,7 +177,7 @@
         android:layout_marginStart="8dp"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/TV_masuk_dengan"
-        app:layout_constraintEnd_toEndOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintStart_toEndOf="@+id/TV_masuk_dengan"
         app:layout_constraintTop_toTopOf="@+id/TV_masuk_dengan" />
 

@@ -7,4 +7,10 @@
     <string name="belum_punya_akun"><u>Belum punya akun</u></string>
     <string name="saya_menyetujui_syarat_dan_ketentuan_yang_berlaku"><u>Saya menyetujui syarat dan ketentuan yang berlaku</u></string>
     <string name="sudah_punya_akun"><u>Sudah punya akun</u></string>
+    <string name="kenalan">Mari Berkenalan dengan Indi</string>
+    <string name="kenalan_sub">Selamat datang di aplikasi Indi Smart Speaker! Dengan Indi Smart Speaker, kamu bisa merasakan keajaibannya dalam mempermudah dan mempercepat aktivitas di rumah kesayanganmu.</string>
+    <string name="hadir">Indi Hadir Menemani kamu</string>
+    <string name="hadir_sub">Kamu bisa berikan instruksi ataupun bertanya pada Indi Smart Speaker hanya dengan menggunakan suara.</string>
+    <string name="mulai">Smart Speaker yang Serba Bisa</string>
+    <string name="mulai_sub">Indi Smart Speaker yang serba bisa juga bisa memberikan kamu akses untuk memilih dan mengatur fitur yang menjadi prioritasmu.\n\n Tunggu apa lagi? Ayo mulai pengalamanmu bersama Indi Smart Speaker!</string>
 </resources>
