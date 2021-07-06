@@ -3,59 +3,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="122dp"
-    android:background="@drawable/gradient_welcome">
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Selamat datang"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/TV_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:layout_editor_absoluteX="24dp" />
-
-    <TextView
-        android:id="@+id/TV_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zahra"
-        android:textColor="@color/white"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="24dp" />
+    android:layout_height="match_parent"
+    android:background="@drawable/background_rounded">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="77dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
+        android:id="@+id/IV_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/welcome"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintVertical_bias="0.16" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/TV_title"
+        android:layout_width="363dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Misi saya"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"
+        android:text="Selamat Datang di Indi Smart Speaker Apps"
         android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/TV_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IV_welcome"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/group"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/TV_subtitle"
+        android:layout_width="363dp"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="textView3" />
+        android:layout_marginBottom="44dp"
+        android:gravity="center_horizontal"
+        android:text="Sambungkan Smart Speaker kamu dan nikmati kemudahan layanan Indi langsung di tangan kamu"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/IV_state_intro"
+        app:layout_constraintEnd_toEndOf="@+id/TV_title"
+        app:layout_constraintStart_toStartOf="@+id/TV_title"
+        app:layout_constraintTop_toBottomOf="@+id/TV_title" />
+
+    <Button
+        android:id="@+id/IV_state_intro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_yellow"
+        android:text="Samsungkan Sekarang"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/CL_next"
+        app:layout_constraintEnd_toEndOf="@+id/TV_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/TV_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/TV_subtitle"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:id="@+id/CL_next"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="end"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/TV_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Sambungkan Nanti"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

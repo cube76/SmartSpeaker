@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/frame_welcome" />
+        layout="@layout/frame_top_bar" />
 
     <ImageView
         android:id="@+id/imageView2"

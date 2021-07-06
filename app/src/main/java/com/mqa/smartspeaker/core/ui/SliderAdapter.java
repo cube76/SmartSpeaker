@@ -4,7 +4,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,8 +18,6 @@ import com.mqa.smartspeaker.core.domain.model.SliderItem;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import javax.annotation.Nonnull;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
 
@@ -67,9 +64,9 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
         SliderViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.IV_intro);
-            title = itemView.findViewById(R.id.TV_title_intro);
-            subtitle = itemView.findViewById(R.id.TV_subtitle_intro);
+            image = itemView.findViewById(R.id.IV_welcome);
+            title = itemView.findViewById(R.id.TV_title);
+            subtitle = itemView.findViewById(R.id.TV_subtitle);
             state = itemView.findViewById(R.id.IV_state_intro);
             next = itemView.findViewById(R.id.TV_next);
             btn_next = itemView.findViewById(R.id.CL_next);
