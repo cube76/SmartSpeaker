@@ -1,5 +1,7 @@
 package com.mqa.smartspeaker.core.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.mqa.smartspeaker.MainActivity;
 import com.mqa.smartspeaker.R;
 import com.mqa.smartspeaker.core.domain.model.SliderItem;
 
@@ -23,10 +26,12 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     private List<SliderItem> sliderItems;
     private ViewPager2 viewPager2;
+//    private Context context;
 
     public SliderAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2) {
         this.sliderItems = sliderItems;
         this.viewPager2 = viewPager2;
+//        this.context = context;
     }
 
     @NonNull
@@ -72,8 +77,10 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
             btn_next = itemView.findViewById(R.id.CL_next);
             btn_next.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (viewPager2.getCurrentItem() == 2) {
+                    if (viewPager2.getCurrentItem() >= 2) {
                         Log.e("habis", "");
+                        Intent intent = new Intent(v.getContext(), MainActivity.class);
+                        v.getContext().startActivity(intent);
                     } else {
                         Log.e("posisi:", ""+viewPager2.getCurrentItem());
                         viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1, true);

@@ -1,98 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="70dp"
     android:background="@drawable/gradient_black_navigation"
-    android:layout_height="70dp">
+    android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/IV_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/TV_home"
-        app:layout_constraintEnd_toStartOf="@+id/IV_device"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/TV_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@color/white"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/IV_home"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/IV_home"
-        app:layout_constraintTop_toBottomOf="@+id/IV_home" />
+        <ImageView
+            android:id="@+id/IV_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_baseline_home_24" />
 
-    <ImageView
-        android:id="@+id/IV_device"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/IV_skill"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/IV_home"
-        app:layout_constraintTop_toTopOf="@+id/IV_home"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
-
-    <TextView
-        android:id="@+id/TV_device"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/IV_device"
-        app:layout_constraintStart_toStartOf="@+id/IV_device"
-        app:layout_constraintTop_toBottomOf="@+id/IV_device" />
-
-    <ImageView
-        android:id="@+id/IV_skill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/IV_account"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/IV_device"
-        app:layout_constraintTop_toTopOf="@+id/IV_device"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
-
-    <TextView
-        android:id="@+id/TV_skill"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/IV_skill"
-        app:layout_constraintStart_toStartOf="@+id/IV_skill"
-        app:layout_constraintTop_toBottomOf="@+id/IV_skill" />
+        <TextView
+            android:id="@+id/TV_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beranda"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
 
 
-    <ImageView
-        android:id="@+id/IV_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/IV_skill"
-        app:layout_constraintTop_toTopOf="@+id/IV_skill"
-        app:srcCompat="@drawable/ic_home_black_24dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/TV_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="10sp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/IV_account"
-        app:layout_constraintStart_toStartOf="@+id/IV_account"
-        app:layout_constraintTop_toBottomOf="@+id/IV_account" />
+        <ImageView
+            android:id="@+id/IV_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/device_icon"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/TV_device"
+            app:layout_constraintEnd_toEndOf="@+id/TV_device"
+            app:layout_constraintStart_toStartOf="@+id/TV_device" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/TV_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Perangkat"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/TV_home"
+            app:layout_constraintEnd_toStartOf="@+id/TV_skill"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/TV_home"
+            app:layout_constraintTop_toBottomOf="@+id/IV_home" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/IV_skill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/skill_icon"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/TV_skill"
+            app:layout_constraintEnd_toEndOf="@+id/TV_skill"
+            app:layout_constraintStart_toStartOf="@+id/TV_skill" />
+
+        <TextView
+            android:id="@+id/TV_skill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Keahlian"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/TV_device"
+            app:layout_constraintEnd_toStartOf="@+id/TV_account"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/TV_device"
+            app:layout_constraintTop_toBottomOf="@+id/IV_device" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/IV_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/account_icon"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/TV_account"
+            app:layout_constraintEnd_toEndOf="@+id/TV_account"
+            app:layout_constraintStart_toStartOf="@+id/TV_account" />
+
+        <TextView
+            android:id="@+id/TV_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Akun"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/TV_skill"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/TV_skill"
+            app:layout_constraintTop_toBottomOf="@+id/IV_skill" />
+    </LinearLayout>
+</LinearLayout>
