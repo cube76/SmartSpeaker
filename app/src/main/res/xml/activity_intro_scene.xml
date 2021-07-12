@@ -9,7 +9,7 @@
         motion:motionInterpolator="linear">
         <OnSwipe
             motion:dragDirection="dragRight"
-            motion:touchAnchorId="@+id/btn_login"
+            motion:touchAnchorId="@+id/btn_register"
             motion:touchAnchorSide="right" />
 
         <KeyFrameSet>
@@ -18,18 +18,18 @@
                 android:scaleX="2"
                 android:scaleY="2"
                 motion:framePosition="50"
-                motion:motionTarget="@id/btn_login" />
+                motion:motionTarget="@id/btn_register" />
             <KeyPosition
                 motion:framePosition="50"
                 motion:keyPositionType="pathRelative"
-                motion:motionTarget="@id/btn_login"
+                motion:motionTarget="@id/btn_register"
                 motion:percentY="-0.3" />
         </KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_register"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginStart="8dp"
@@ -45,7 +45,7 @@
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@id/btn_login"
+            android:id="@id/btn_register"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginEnd="8dp"

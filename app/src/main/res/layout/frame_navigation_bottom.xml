@@ -18,18 +18,26 @@
         android:foreground="?attr/selectableItemBackground">
 
         <ImageView
+            android:id="@+id/IV_home_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/dot_icon"
+            android:layout_marginBottom="2dp"/>
+
+        <ImageView
             android:id="@+id/IV_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_baseline_home_24" />
+            android:src="@drawable/home_icon" />
 
         <TextView
             android:id="@+id/TV_home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Beranda"
-            android:textColor="@color/white"
+            android:textColor="@color/yellow"
             android:textSize="10sp"
             android:layout_gravity="center_horizontal"/>
     </LinearLayout>

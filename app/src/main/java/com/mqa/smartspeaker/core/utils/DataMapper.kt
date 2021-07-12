@@ -1,6 +1,7 @@
 package com.mqa.smartspeaker.core.utils
 
 import com.dicoding.tourismapp.core.data.source.local.entity.TourismEntity
+import com.mqa.smartspeaker.core.data.source.remote.response.RegisterResponse
 import com.mqa.smartspeaker.core.data.source.remote.response.TourismResponse
 import com.mqa.smartspeaker.core.domain.model.Tourism
 
@@ -22,6 +23,17 @@ object DataMapper {
             tourismList.add(tourism)
         }
         return tourismList
+    }
+
+    fun mapDetailResponseToDomain(input: RegisterResponse): RegisterResponse {
+        return RegisterResponse(
+            first_name = input.first_name,
+            last_name = input.last_name,
+            email = input.email,
+            contact = input.contact,
+            password = input.password,
+            message = input.message
+        )
     }
 
     fun mapEntitiesToDomain(input: List<TourismEntity>): List<Tourism> =
