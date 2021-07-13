@@ -14,4 +14,8 @@
     <string name="mulai">Smart Speaker yang Serba Bisa</string>
     <string name="mulai_sub">Indi Smart Speaker yang serba bisa juga bisa memberikan kamu akses untuk memilih dan mengatur fitur yang menjadi prioritasmu.\n\n Tunggu apa lagi? Ayo mulai pengalamanmu bersama Indi Smart Speaker!</string>
     <string name="TnC">Syarat dan ketentuan belum disetujui</string>
+    <string name="daftar">Daftar</string>
+    <string name="kode_aktivasi_telah_dikirim_masukan_kode_aktivasi_yang_kami_kirim_ke_email_yang_terdaftar">Kode aktivasi telah dikirim, masukan kode aktivasi yang kami kirim ke email yang terdaftar</string>
+    <string name="masukan_kode">Masukan Kode</string>
+    <string name="kirim_ulang"><u>Kirim Ulang</u></string>
 </resources>

@@ -1,27 +1,22 @@
 package com.mqa.smartspeaker.core.data
 
 //import com.dicoding.tourismapp.core.data.source.local.LocalDataSource
-import android.util.Log
 import com.mqa.smartspeaker.core.data.source.remote.RemoteDataSource
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiResponse
-import com.mqa.smartspeaker.core.data.source.remote.response.RegisterRequest
-import com.mqa.smartspeaker.core.data.source.remote.response.RegisterResponse
-import com.mqa.smartspeaker.core.data.source.remote.response.TourismResponse
-import com.mqa.smartspeaker.core.domain.model.Tourism
-import com.mqa.smartspeaker.core.domain.repository.ITourismRepository
+import com.mqa.smartspeaker.core.data.source.remote.response.*
+import com.mqa.smartspeaker.core.domain.repository.ISmartSpeakerRepository
 import com.mqa.smartspeaker.core.utils.AppExecutors
-import com.mqa.smartspeaker.core.utils.DataMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TourismRepository @Inject constructor(
+class SmartSpeakerRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
 //    private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
-) : ITourismRepository {
+) : ISmartSpeakerRepository {
 
 //    override fun getAllTourism(): Flow<Resource<List<Tourism>>> =
 //        object : NetworkBoundResource<List<Tourism>, List<TourismResponse>>() {
@@ -46,6 +41,18 @@ class TourismRepository @Inject constructor(
 
     override suspend fun postRegister(registerRequest: RegisterRequest): Flow<Resource<RegisterResponse>> {
         return remoteDataSource.postRegister(registerRequest).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun getVerifyEmail(email: String,verificationCode: Int): Flow<Resource<VerifyEmailResponse>> {
+        return remoteDataSource.getVerifyEmail(email,verificationCode).map {
             when (it) {
                 is ApiResponse.Success -> {
                     Resource.Success(it.data!!)

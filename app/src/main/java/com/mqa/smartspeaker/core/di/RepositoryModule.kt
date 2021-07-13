@@ -1,7 +1,7 @@
 package com.mqa.smartspeaker.core.di
 
-import com.mqa.smartspeaker.core.data.TourismRepository
-import com.mqa.smartspeaker.core.domain.repository.ITourismRepository
+import com.mqa.smartspeaker.core.data.SmartSpeakerRepository
+import com.mqa.smartspeaker.core.domain.repository.ISmartSpeakerRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,6 +12,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun provideRepository(tourismRepository: TourismRepository): ITourismRepository
+    abstract fun provideRepository(tourismRepository: SmartSpeakerRepository): ISmartSpeakerRepository
 
 }

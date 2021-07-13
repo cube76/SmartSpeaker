@@ -5,9 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiResponse
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiService
-import com.mqa.smartspeaker.core.data.source.remote.response.RegisterRequest
-import com.mqa.smartspeaker.core.data.source.remote.response.RegisterResponse
-import com.mqa.smartspeaker.core.data.source.remote.response.TourismResponse
+import com.mqa.smartspeaker.core.data.source.remote.response.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -49,6 +47,28 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
                     val gson = Gson()
                     val type = object : TypeToken<RegisterResponse>() {}.type
                     var errorResponse: RegisterResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getVerifyEmail(email: String,verificationCode: Int): Flow<ApiResponse<VerifyEmailResponse?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getVerifyEmail(email,verificationCode)
+//                val dataArray = response.places
+                Log.e("respon",""+response)
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegularResponse>() {}.type
+                    var errorResponse: RegularResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
                     emit(ApiResponse.Error(errorResponse.message))
                 }
             } catch (e : Exception){
