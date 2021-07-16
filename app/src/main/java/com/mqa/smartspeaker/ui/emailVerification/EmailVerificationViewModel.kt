@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.mqa.smartspeaker.core.data.Resource
-import com.mqa.smartspeaker.core.data.source.remote.response.RegisterRequest
-import com.mqa.smartspeaker.core.data.source.remote.response.RegisterResponse
 import com.mqa.smartspeaker.core.data.source.remote.response.VerifyEmailResponse
 import com.mqa.smartspeaker.core.domain.usecase.SmartSpeakerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -44,6 +44,7 @@
             android:id="@+id/TV_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
             android:hint="Alamat Email" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,6 +74,7 @@
         android:background="@drawable/btn_yellow"
         android:text="Daftar"
         android:textAllCaps="false"
+        android:foreground="?attr/selectableItemBackground"
         android:textColor="@color/black_primary"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,12 +82,13 @@
         app:layout_constraintTop_toBottomOf="@+id/CB_tnc" />
 
     <TextView
-        android:id="@+id/TV_no_account"
+        android:id="@+id/TV_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:text="@string/sudah_punya_akun"
         android:textColor="@color/white"
+        android:foreground="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

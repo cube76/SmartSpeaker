@@ -18,4 +18,9 @@
     <string name="kode_aktivasi_telah_dikirim_masukan_kode_aktivasi_yang_kami_kirim_ke_email_yang_terdaftar">Kode aktivasi telah dikirim, masukan kode aktivasi yang kami kirim ke email yang terdaftar</string>
     <string name="masukan_kode">Masukan Kode</string>
     <string name="kirim_ulang"><u>Kirim Ulang</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="silakan_masukkan_email_kamu_yang_terdaftar_di_aplikasi_indi_smart_speaker_untuk_melakukan_aktivasi">Silakan masukkan email kamu yang terdaftar di aplikasi Indi Smart Speaker untuk melakukan aktivasi</string>
+    <string name="lupa_kata_sandi_title">Lupa Kata Sandi</string>
+    <string name="silakan_masukkan_kata_sandi_baru_akun_kamu_dan_ulangi_kata_sandi_baru">Silakan masukkan kata sandi baru akun kamu dan ulangi kata sandi baru.</string>
 </resources>

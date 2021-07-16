@@ -1,4 +1,4 @@
-package com.mqa.smartspeaker.core.data.source.remote.response
+package com.mqa.smartspeaker.core.data.source.remote.request
 
 import com.google.gson.annotations.SerializedName
 

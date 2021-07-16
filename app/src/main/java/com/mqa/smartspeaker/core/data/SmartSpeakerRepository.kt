@@ -3,6 +3,9 @@ package com.mqa.smartspeaker.core.data
 //import com.dicoding.tourismapp.core.data.source.local.LocalDataSource
 import com.mqa.smartspeaker.core.data.source.remote.RemoteDataSource
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiResponse
+import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.*
 import com.mqa.smartspeaker.core.domain.repository.ISmartSpeakerRepository
 import com.mqa.smartspeaker.core.utils.AppExecutors
@@ -53,6 +56,54 @@ class SmartSpeakerRepository @Inject constructor(
 
     override suspend fun getVerifyEmail(email: String,verificationCode: Int): Flow<Resource<VerifyEmailResponse>> {
         return remoteDataSource.getVerifyEmail(email,verificationCode).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun getLogin(loginRequest: LoginRequest): Flow<Resource<LoginResponse>> {
+        return remoteDataSource.getLogin(loginRequest).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun postForgetPassword(email: RecoveryPasswordRequest): Flow<Resource<RegularResponse>> {
+        return remoteDataSource.postForgetPassword(email).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun postCheckForgetPasswordCode(recoveryPasswordRequest: RecoveryPasswordRequest): Flow<Resource<RegularResponse>> {
+        return remoteDataSource.postCheckForgetPasswordCode(recoveryPasswordRequest).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun postRecoveryPassword(recoveryPasswordRequest: RecoveryPasswordRequest): Flow<Resource<RegularResponse>> {
+        return remoteDataSource.postRecoveryPassword(recoveryPasswordRequest).map {
             when (it) {
                 is ApiResponse.Success -> {
                     Resource.Success(it.data!!)

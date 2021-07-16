@@ -1,10 +1,13 @@
 package com.mqa.smartspeaker.core.domain.repository
 
 import com.mqa.smartspeaker.core.data.Resource
-import com.mqa.smartspeaker.core.data.source.remote.response.RegisterRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
+import com.mqa.smartspeaker.core.data.source.remote.response.LoginResponse
+import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.RegisterResponse
+import com.mqa.smartspeaker.core.data.source.remote.response.RegularResponse
 import com.mqa.smartspeaker.core.data.source.remote.response.VerifyEmailResponse
-import com.mqa.smartspeaker.core.domain.model.Tourism
 import kotlinx.coroutines.flow.Flow
 
 interface ISmartSpeakerRepository {
@@ -18,4 +21,8 @@ interface ISmartSpeakerRepository {
 //    fun setFavoriteTourism(tourism: Tourism, state: Boolean)
 
     suspend fun getVerifyEmail(email:String,verificationCode: Int): Flow<Resource<VerifyEmailResponse>>
+    suspend fun getLogin(loginRequest: LoginRequest): Flow<Resource<LoginResponse>>
+    suspend fun postForgetPassword(email:RecoveryPasswordRequest): Flow<Resource<RegularResponse>>
+    suspend fun postCheckForgetPasswordCode(recoveryPasswordRequest: RecoveryPasswordRequest): Flow<Resource<RegularResponse>>
+    suspend fun postRecoveryPassword(recoveryPasswordRequest: RecoveryPasswordRequest): Flow<Resource<RegularResponse>>
 }
