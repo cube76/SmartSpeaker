@@ -8,6 +8,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/LL_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -30,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/home_icon" />
+            android:src="@drawable/home_yellow_icon" />
 
         <TextView
             android:id="@+id/TV_home"
@@ -44,6 +45,7 @@
 
 
     <LinearLayout
+        android:id="@+id/LL_device"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -52,6 +54,15 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/IV_device_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/dot_icon"
+            android:layout_marginBottom="2dp"/>
 
         <ImageView
             android:id="@+id/IV_device"
@@ -79,6 +90,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/LL_skill"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -87,6 +99,15 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/IV_skill_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/dot_icon"
+            android:layout_marginBottom="2dp"/>
 
         <ImageView
             android:id="@+id/IV_skill"
@@ -114,6 +135,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/LL_account"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
@@ -122,6 +144,15 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/IV_account_dot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/dot_icon"
+            android:layout_marginBottom="2dp"/>
 
         <ImageView
             android:id="@+id/IV_account"

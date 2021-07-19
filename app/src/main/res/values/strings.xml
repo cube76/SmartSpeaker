@@ -23,4 +23,6 @@
     <string name="silakan_masukkan_email_kamu_yang_terdaftar_di_aplikasi_indi_smart_speaker_untuk_melakukan_aktivasi">Silakan masukkan email kamu yang terdaftar di aplikasi Indi Smart Speaker untuk melakukan aktivasi</string>
     <string name="lupa_kata_sandi_title">Lupa Kata Sandi</string>
     <string name="silakan_masukkan_kata_sandi_baru_akun_kamu_dan_ulangi_kata_sandi_baru">Silakan masukkan kata sandi baru akun kamu dan ulangi kata sandi baru.</string>
+    <string name="misi_saya">Misi Saya</string>
+    <string name="bantuan">Bantuan</string>
 </resources>

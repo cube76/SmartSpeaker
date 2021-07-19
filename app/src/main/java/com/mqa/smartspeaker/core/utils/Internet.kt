@@ -3,7 +3,13 @@ package com.mqa.smartspeaker.core.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.transition.Slide
+import android.transition.Transition
+import android.transition.TransitionManager
 import android.util.Log
+import android.view.Gravity
+import android.view.View
+import android.view.ViewGroup
 
 object Internet {
     fun isOnline(context: Context): Boolean {
@@ -27,5 +33,13 @@ object Internet {
             }
         }
         return false
+    }
+
+    fun toggle(show: Boolean, view: View, parent:View) {
+        val transition: Transition = Slide(Gravity.BOTTOM)
+        transition.setDuration(600)
+        transition.addTarget(view)
+        TransitionManager.beginDelayedTransition(parent as ViewGroup?, transition)
+        view.visibility = if (show) View.VISIBLE else View.GONE
     }
 }

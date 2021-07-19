@@ -30,4 +30,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/fragment_home"/>
 
+    <include
+        android:id="@+id/welcome_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="90dp"
+        layout="@layout/frame_welcome"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
