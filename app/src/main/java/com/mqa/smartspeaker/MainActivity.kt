@@ -1,5 +1,6 @@
 package com.mqa.smartspeaker
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentTransaction
 import com.mqa.smartspeaker.databinding.ActivityMainBinding
 import com.mqa.smartspeaker.ui.account.AccountFragment
+import com.mqa.smartspeaker.ui.connectSmartSpeaker.ConnectSmartSpeakerActivity
+import com.mqa.smartspeaker.ui.detailSmartSpeaker.DetailSmartSpeakerActivity
 import com.mqa.smartspeaker.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,8 +38,13 @@ class MainActivity : AppCompatActivity() {
             closeAccount()
         }
 
-        binding.welcomeView.TVNext.setOnClickListener {
+        binding.welcomeView.CLNext.setOnClickListener {
             binding.welcomeView.root.visibility = View.GONE
+        }
+
+        binding.welcomeView.IVConnectNow.setOnClickListener {
+            val i = Intent(this, ConnectSmartSpeakerActivity::class.java)
+           startActivity(i)
         }
 
 

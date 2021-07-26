@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TV_location" />
 
     <include
-        android:id="@+id/include2"
+        android:id="@+id/include_add_smart_speaker"
         layout="@layout/item_empty_smart_speaker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:textColor="@color/dark_white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
+        app:layout_constraintTop_toBottomOf="@+id/include_add_smart_speaker" />
 
     <TextView
         android:id="@+id/textView9"
@@ -83,10 +83,11 @@
         app:layout_constraintTop_toTopOf="@+id/textView8" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/RV_skill_fav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
@@ -100,9 +101,9 @@
         android:clickable="true"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView">
+        app:layout_constraintEnd_toEndOf="@+id/RV_skill_fav"
+        app:layout_constraintStart_toStartOf="@+id/RV_skill_fav"
+        app:layout_constraintTop_toBottomOf="@+id/RV_skill_fav">
 
         <ImageView
             android:id="@+id/imageView8"
@@ -118,27 +119,29 @@
 
         <TextView
             android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="2dp"
+            android:layout_height="26dp"
             android:layout_marginStart="24dp"
             android:text="Tambah Kemampuan"
             android:textColor="@color/dark_white"
             app:layout_constraintBottom_toBottomOf="@+id/imageView8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView8" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RV_speaker_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_smart_speaker"
         android:scrollbars="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/include2"
-        app:layout_constraintEnd_toEndOf="@+id/include2"
-        app:layout_constraintStart_toStartOf="@+id/include2"
-        app:layout_constraintTop_toTopOf="@+id/include2" />
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/include_add_smart_speaker"
+        app:layout_constraintEnd_toEndOf="@+id/include_add_smart_speaker"
+        app:layout_constraintStart_toStartOf="@+id/include_add_smart_speaker"
+        app:layout_constraintTop_toTopOf="@+id/include_add_smart_speaker"
+        tools:listitem="@layout/item_smart_speaker" />
 
     <ImageView
         android:id="@+id/imageView9"

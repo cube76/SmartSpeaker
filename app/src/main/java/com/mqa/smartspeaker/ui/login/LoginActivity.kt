@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.includeSheet.btnTryAgain.setOnClickListener{
-            binding.btnLogin.performClick()
+            Internet.toggle(false, binding.includeSheet.root, binding.parent)
         }
         binding.btnLogin.setOnClickListener {
             if (!Internet.isOnline(applicationContext)) {

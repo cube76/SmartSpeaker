@@ -1,0 +1,32 @@
+package com.mqa.smartspeaker.ui.detailSmartSpeaker
+
+import android.R
+import android.app.Dialog
+import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.View
+import android.view.Window
+import com.mqa.smartspeaker.databinding.DialogEditSmartSpeakerBinding
+
+class EditSmartSpeakerDialog (context: Context) : Dialog(context) {
+    private lateinit var binding: DialogEditSmartSpeakerBinding
+
+    init {
+        setCancelable(true)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        binding = DialogEditSmartSpeakerBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
+        setContentView(binding.root)
+
+        getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+
+        binding.btnCancel.setOnClickListener {
+            cancel()
+        }
+    }
+}
