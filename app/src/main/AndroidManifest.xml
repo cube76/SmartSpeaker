@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".ui.connectSmartSpeaker.ConnectSmartSpeakerActivity"></activity>
+        <activity android:name=".ui.device.lamp.LampActivity"></activity>
+        <activity android:name=".ui.connectSmartSpeaker.ConnectSmartSpeakerActivity" />
         <activity android:name=".ui.detailSmartSpeaker.DetailSmartSpeakerActivity" />
         <activity android:name=".ui.splashScreen.videoSplash.VideoSplashActivity" />
         <activity android:name=".ui.splashScreen.splash.SplashScreenActivity">

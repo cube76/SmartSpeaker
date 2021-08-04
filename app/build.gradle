@@ -39,6 +39,9 @@ android {
     kapt {
         correctErrorTypes true
     }
+    packagingOptions {
+        exclude 'META-INF/library_release.kotlin_module'
+    }
 }
 
 dependencies {
@@ -65,6 +68,8 @@ dependencies {
     implementation 'com.github.HamidrezaAmz:MagicalExoPlayer:2.0.7'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.thanosfisherman.wifiutils:wifiutils:1.6.5'
+    implementation 'com.gcssloop.widget:arc-seekbar:1.7.0'
+    implementation 'me.jorgecastillo:androidcolorx:0.2.0'
 
     implementation "androidx.cardview:cardview:$cardview_version"
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"

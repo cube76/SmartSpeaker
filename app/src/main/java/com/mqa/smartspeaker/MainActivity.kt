@@ -3,13 +3,14 @@ package com.mqa.smartspeaker
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentTransaction
 import com.mqa.smartspeaker.databinding.ActivityMainBinding
 import com.mqa.smartspeaker.ui.account.AccountFragment
 import com.mqa.smartspeaker.ui.connectSmartSpeaker.ConnectSmartSpeakerActivity
-import com.mqa.smartspeaker.ui.detailSmartSpeaker.DetailSmartSpeakerActivity
+import com.mqa.smartspeaker.ui.device.DeviceFragment
+import com.mqa.smartspeaker.ui.device.lamp.LampActivity
 import com.mqa.smartspeaker.ui.home.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,11 +32,19 @@ class MainActivity : AppCompatActivity() {
         binding.navView.LLAccount.setOnClickListener {
             openAccount()
             closeHome()
+            closeDevice()
         }
 
         binding.navView.LLHome.setOnClickListener {
             openHome()
             closeAccount()
+            closeDevice()
+        }
+
+        binding.navView.LLDevice.setOnClickListener {
+            openDevice()
+            closeAccount()
+            closeHome()
         }
 
         binding.welcomeView.CLNext.setOnClickListener {
@@ -78,6 +87,15 @@ class MainActivity : AppCompatActivity() {
         binding.navView.TVAccount.setTextColor(ContextCompat.getColor(applicationContext, R.color.yellow))
     }
 
+    fun openDevice(){
+        var deviceFragment: DeviceFragment = DeviceFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, deviceFragment)
+            .commit()
+        binding.navView.IVDevice.setImageResource(R.drawable.device_yellow_icon)
+        binding.navView.IVDeviceDot.visibility = View.VISIBLE
+        binding.navView.TVDevice.setTextColor(ContextCompat.getColor(applicationContext, R.color.yellow))
+    }
+
     fun closeHome(){
         binding.navView.IVHome.setImageResource(R.drawable.home_icon)
         binding.navView.IVHomeDot.visibility = View.GONE
@@ -88,5 +106,32 @@ class MainActivity : AppCompatActivity() {
         binding.navView.IVAccount.setImageResource(R.drawable.account_icon)
         binding.navView.IVAccountDot.visibility = View.GONE
         binding.navView.TVAccount.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
+    }
+
+    fun closeDevice(){
+        binding.navView.IVDevice.setImageResource(R.drawable.device_icon)
+        binding.navView.IVDeviceDot.visibility = View.GONE
+        binding.navView.TVDevice.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
+    }
+
+
+    fun onRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            // Is the button now checked?
+            val checked = view.isChecked
+
+            // Check which radio button was clicked
+            when (view.getId()) {
+                R.id.radio_semua ->
+                    if (checked) {
+                        val intent = Intent(this, LampActivity::class.java)
+                        startActivity(intent)
+                    }
+                R.id.radio_on ->
+                    if (checked) {
+                        // Ninjas rule
+                    }
+            }
+        }
     }
 }

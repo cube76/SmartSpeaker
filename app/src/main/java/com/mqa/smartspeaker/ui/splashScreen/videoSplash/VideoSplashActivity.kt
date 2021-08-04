@@ -43,6 +43,8 @@ class VideoSplashActivity : AppCompatActivity() {
         binding.btnSkip.setOnClickListener {
             val intent = Intent(this@VideoSplashActivity, LoginActivity::class.java)
             startActivity(intent)
+
+            binding.andExoPlayerView.stopPlayer()
         }
 
 //        val videoview = findViewById<View>(R.id.videoView2) as VideoView
