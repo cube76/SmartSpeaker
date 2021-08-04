@@ -84,7 +84,7 @@
         app:srcCompat="@drawable/ic_baseline_edit_24" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/TV_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -104,7 +104,7 @@
         app:layout_constraintBottom_toTopOf="@+id/SB_brightness"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_dialog_title" />
 
     <SeekBar
         android:id="@+id/SB_brightness"
@@ -143,11 +143,12 @@
         android:id="@+id/SB_contras"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="40dp"
         android:max="100"
         android:min="0"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toStartOf="@+id/TV_persentage_brightness"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/SB_brightness" />
 
     <ImageView
@@ -183,19 +184,32 @@
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/btn_on_off"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/ic_baseline_edit_24"
-        android:foreground="?attr/selectableItemBackground"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="@+id/SB_contras"
-        app:layout_constraintStart_toStartOf="@+id/SB_contras"
-        app:layout_constraintTop_toBottomOf="@+id/SB_contras" />
+        app:layout_constraintStart_toStartOf="@+id/SB_contras">
+
+        <ImageButton
+            android:id="@+id/btn_on_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ic_baseline_edit_24"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/off_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/on_ring_icon" />
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/view5"
@@ -215,7 +229,7 @@
         android:src="@drawable/warm_icon"
         app:layout_constraintBottom_toTopOf="@+id/SB_warm"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_dialog_title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

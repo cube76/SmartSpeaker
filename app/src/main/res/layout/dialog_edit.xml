@@ -7,7 +7,7 @@
     android:background="@drawable/background_rounded">
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/TV_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -17,7 +17,7 @@
         android:text="Ubah Nama Perangkat"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+        app:layout_constraintBottom_toTopOf="@+id/ET_input_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/ET_input_edit"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_dialog_title" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2">
+        app:layout_constraintTop_toBottomOf="@+id/ET_input_edit">
 
         <Button
             android:id="@+id/btn_cancel"
