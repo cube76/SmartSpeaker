@@ -8,9 +8,12 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
+import com.mqa.smartspeaker.MainActivity
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.ActivityVideoSplashBinding
 import com.mqa.smartspeaker.ui.login.LoginActivity
+import com.mqa.smartspeaker.ui.login.LoginActivity.Companion.FIRST_LAUNCH
+import com.pixplicity.easyprefs.library.Prefs
 
 
 private lateinit var binding: ActivityVideoSplashBinding
@@ -21,6 +24,11 @@ class VideoSplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoSplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (Prefs.getBoolean(FIRST_LAUNCH, false)) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.andExoPlayerView.setSource("android.resource://"+ packageName +"/"+ R.raw.vertikal)
 

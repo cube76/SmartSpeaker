@@ -31,8 +31,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var token: LoginResponse
-    val TOKEN = "token"
-    val FIRST_LAUNCH = "firstLaunch"
+    companion object {
+        val TOKEN = "token"
+        val FIRST_LAUNCH = "firstLaunch"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
