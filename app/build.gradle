@@ -17,7 +17,18 @@ android {
         versionCode 1
         versionName "1.0"
 
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        manifestPlaceholders = [
+                TUYA_SMART_APPKEY: "${properties.getProperty("appKey")}",
+                TUYA_SMART_SECRET: "${properties.getProperty("appSecret")}",
+        ]
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
     }
 
     buildTypes {
@@ -41,6 +52,8 @@ android {
     }
     packagingOptions {
         exclude 'META-INF/library_release.kotlin_module'
+        pickFirst 'lib/*/libc++_shared.so' // An Android Archive (AAR) file contains an Android library. If the .so file exists in multiple AAR files, select the first AAR file.
+        pickFirst 'lib/*/libgnustl_shared.so'//业务包需要
     }
 }
 
@@ -100,4 +113,10 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
     kaptAndroidTest "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
+
+    implementation 'com.alibaba:fastjson:1.1.67.android'
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:3.14.9'
+
+    // The latest stable App SDK for Android.
+    implementation 'com.tuya.smart:tuyasmart:3.28.5'
 }

@@ -12,6 +12,7 @@ import com.mqa.smartspeaker.ui.connectSmartSpeaker.ConnectSmartSpeakerActivity
 import com.mqa.smartspeaker.ui.device.DeviceFragment
 import com.mqa.smartspeaker.ui.device.lamp.LampActivity
 import com.mqa.smartspeaker.ui.home.HomeFragment
+import com.mqa.smartspeaker.ui.skill.SkillFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -33,18 +34,28 @@ class MainActivity : AppCompatActivity() {
             openAccount()
             closeHome()
             closeDevice()
+            closeSkill()
         }
 
         binding.navView.LLHome.setOnClickListener {
             openHome()
             closeAccount()
             closeDevice()
+            closeSkill()
         }
 
         binding.navView.LLDevice.setOnClickListener {
             openDevice()
             closeAccount()
             closeHome()
+            closeSkill()
+        }
+
+        binding.navView.LLSkill.setOnClickListener {
+            openSkill()
+            closeAccount()
+            closeHome()
+            closeDevice()
         }
 
         binding.welcomeView.CLNext.setOnClickListener {
@@ -96,6 +107,15 @@ class MainActivity : AppCompatActivity() {
         binding.navView.TVDevice.setTextColor(ContextCompat.getColor(applicationContext, R.color.yellow))
     }
 
+    fun openSkill(){
+        var mainFragment: SkillFragment = SkillFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mainFragment)
+            .commit()
+        binding.navView.IVSkill.setImageResource(R.drawable.skill_yellow_icon)
+        binding.navView.IVSkillDot.visibility = View.VISIBLE
+        binding.navView.TVSkill.setTextColor(ContextCompat.getColor(applicationContext, R.color.yellow))
+    }
+
     fun closeHome(){
         binding.navView.IVHome.setImageResource(R.drawable.home_icon)
         binding.navView.IVHomeDot.visibility = View.GONE
@@ -112,6 +132,12 @@ class MainActivity : AppCompatActivity() {
         binding.navView.IVDevice.setImageResource(R.drawable.device_icon)
         binding.navView.IVDeviceDot.visibility = View.GONE
         binding.navView.TVDevice.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
+    }
+
+    fun closeSkill(){
+        binding.navView.IVSkill.setImageResource(R.drawable.skill_icon)
+        binding.navView.IVSkillDot.visibility = View.GONE
+        binding.navView.TVSkill.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
     }
 
 

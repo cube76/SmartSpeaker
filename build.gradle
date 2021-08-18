@@ -51,7 +51,13 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven { url "http://lib.gcssloop.com:8081/repository/gcssloop-central/" }
+        maven { url "http://lib.gcssloop.com:8081/repository/gcssloop-central/"}
+        maven {
+            url "https://maven-other.tuya.com/repository/maven-releases/"
+            mavenContent {
+                releasesOnly()
+            }
+        }
     }
 }
 

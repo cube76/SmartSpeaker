@@ -13,4 +13,6 @@ data class RegisterRequest (
 
     val password_confirmation: String,
 
+    val homeId: String?,
+
 )
