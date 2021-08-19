@@ -19,6 +19,6 @@ open class MyApplication : Application(){
             .build()
 
         TuyaHomeSdk.init(this)
-        TuyaHomeSdk.setDebugMode(true)
+//        TuyaHomeSdk.setDebugMode(true)
     }
 }

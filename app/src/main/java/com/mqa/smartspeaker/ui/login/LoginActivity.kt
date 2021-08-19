@@ -48,6 +48,7 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, Intro2Activity::class.java)
                 startActivity(intent)
             } else {
+                Prefs.putBoolean(FIRST_LAUNCH, false)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
