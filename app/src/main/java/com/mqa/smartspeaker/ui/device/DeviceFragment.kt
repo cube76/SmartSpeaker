@@ -36,15 +36,10 @@ class DeviceFragment : Fragment() {
         _binding = FragmentDeviceBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
 
-        item.add("tambah")
-        val spacingInPixels =
-            resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
-        binding.RVDevice.addItemDecoration(
-            SpacesItemDecoration(
-                spacingInPixels,
-                spacingInPixels
-            )
-        )
+        item.add("add device")
+        binding.RVDevice.layoutManager = GridLayoutManager(context, 2)
+        var itemDecoration: SpacesItemDecoration = SpacesItemDecoration(requireContext(), R.dimen.list)
+        binding.RVDevice.addItemDecoration(itemDecoration);
         binding.refreshDevice.isRefreshing = true
         showList()
         binding.refreshDevice.setOnRefreshListener {
@@ -65,7 +60,6 @@ class DeviceFragment : Fragment() {
                     deviceAdapter = DeviceAdapter(it.deviceList as ArrayList<DeviceBean>, item)
 
                     binding.RVDevice.apply {
-                        layoutManager = GridLayoutManager(activity, 2)
                         adapter = deviceAdapter
 
                     }
