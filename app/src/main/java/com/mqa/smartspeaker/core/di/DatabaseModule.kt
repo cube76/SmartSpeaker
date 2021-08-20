@@ -2,7 +2,7 @@
 //
 //import android.content.Context
 //import androidx.room.Room
-//import com.dicoding.tourismapp.core.data.source.local.room.TourismDao
+//import com.mqa.smartspeaker.core.data.source.local.room.TourismDao
 //import com.dicoding.tourismapp.core.data.source.local.room.TourismDatabase
 //import dagger.Module
 //import dagger.Provides

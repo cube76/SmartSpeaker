@@ -1,13 +1,16 @@
-//package com.dicoding.tourismapp.core.data.source.local.room
+//package com.mqa.smartspeaker.core.data.source.local.room
 //
 //import androidx.room.*
 //import com.dicoding.tourismapp.core.data.source.local.entity.TourismEntity
 //import kotlinx.coroutines.flow.Flow
 //
 //@Dao
-//interface TourismDao {
+//interface SmartSpeakerDao {
 //
 //    @Query("SELECT * FROM tourism")
+//    fun getAllTourism(): Flow<List<TourismEntity>>
+//
+//    @Query("SELECT * FROM color")
 //    fun getAllTourism(): Flow<List<TourismEntity>>
 //
 //    @Query("SELECT * FROM tourism where isFavorite = 1")

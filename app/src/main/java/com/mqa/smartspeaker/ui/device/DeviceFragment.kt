@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.utils.SpacesItemDecoration
 import com.mqa.smartspeaker.databinding.FragmentDeviceBinding
@@ -17,7 +20,7 @@ import com.tuya.smart.sdk.bean.DeviceBean
 
 
 class DeviceFragment : Fragment() {
-    private var _binding: FragmentDeviceBinding ? = null
+    private var _binding: FragmentDeviceBinding? = null
     private val binding get() = _binding!!
     lateinit var deviceAdapter: DeviceAdapter
     var item: ArrayList<String> = arrayListOf()
@@ -33,23 +36,42 @@ class DeviceFragment : Fragment() {
         _binding = FragmentDeviceBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
 
+        item.add("tambah")
+        val spacingInPixels =
+            resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
+        binding.RVDevice.addItemDecoration(
+            SpacesItemDecoration(
+                spacingInPixels,
+                spacingInPixels
+            )
+        )
+        binding.refreshDevice.isRefreshing = true
+        showList()
+        binding.refreshDevice.setOnRefreshListener {
+            showList()
+        }
+
+        return binding.root
+    }
+
+    fun showList(){
         TuyaHomeSdk.newHomeInstance(38246244).getHomeDetail(object : ITuyaHomeResultCallback {
             override fun onSuccess(bean: HomeBean?) {
+                binding.refreshDevice.isRefreshing = false
                 bean?.let { it ->
 //                        it.deviceList.addAll(DeviceBean("",""))
 //                        val deviceList: List<DeviceBean?> = ArrayList<DeviceBean>()
 //                        deviceList = it.deviceList()
-                    item.add("tambah")
                     deviceAdapter = DeviceAdapter(it.deviceList as ArrayList<DeviceBean>, item)
-                    val spacingInPixels = resources.getDimensionPixelSize(R.dimen.activity_horizontal_margin)
+
                     binding.RVDevice.apply {
                         layoutManager = GridLayoutManager(activity, 2)
                         adapter = deviceAdapter
-                        addItemDecoration(SpacesItemDecoration(spacingInPixels, spacingInPixels))
+
                     }
 
 //                    deviceAdapter.data = it.deviceList as ArrayList<DeviceBean>
-                        Log.e("devices", ""+ it.deviceList[0])
+                    Log.e("devices", "" + it.deviceList[0])
 //                    deviceAdapter.data.add("")
                     deviceAdapter.notifyDataSetChanged()
 
@@ -58,12 +80,15 @@ class DeviceFragment : Fragment() {
             }
 
             override fun onError(errorCode: String?, errorMsg: String?) {
-
+                binding.refreshDevice.isRefreshing = false
+                Toast.makeText(
+                    activity,
+                    "$errorMsg",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
         })
-
-        return binding.root
     }
 
 }

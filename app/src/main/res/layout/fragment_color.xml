@@ -59,6 +59,7 @@
         android:layout_height="280dp"
         app:arc_open_angle="1"
         app:arc_width="60dp"
+        app:arc_max="360"
         app:layout_constraintBottom_toTopOf="@+id/SB_brightness"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +93,7 @@
         android:paddingEnd="16dp"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:text="0%"
         app:layout_constraintBottom_toBottomOf="@+id/SB_brightness"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/SB_brightness"
@@ -105,7 +107,7 @@
         android:max="100"
         android:min="0"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-        app:layout_constraintEnd_toStartOf="@+id/TV_persentage_brightness"
+        app:layout_constraintEnd_toStartOf="@+id/TV_persentage_contras"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/SB_brightness" />
 
@@ -127,6 +129,7 @@
         android:paddingEnd="16dp"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:text="0%"
         app:layout_constraintBottom_toBottomOf="@+id/SB_contras"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/SB_contras"

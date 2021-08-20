@@ -1,7 +1,7 @@
 //package com.dicoding.tourismapp.core.data.source.local
 //
 //import com.dicoding.tourismapp.core.data.source.local.entity.TourismEntity
-//import com.dicoding.tourismapp.core.data.source.local.room.TourismDao
+//import com.mqa.smartspeaker.core.data.source.local.room.TourismDao
 //import kotlinx.coroutines.flow.Flow
 //import javax.inject.Inject
 //import javax.inject.Singleton

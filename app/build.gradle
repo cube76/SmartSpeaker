@@ -119,4 +119,5 @@ dependencies {
 
     // The latest stable App SDK for Android.
     implementation 'com.tuya.smart:tuyasmart:3.28.5'
+    implementation 'com.tuya.smart:tuyasmart-centralcontrol:1.0.3'
 }

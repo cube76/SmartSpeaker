@@ -31,9 +31,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var token: LoginResponse
+
     companion object {
-        val TOKEN = "token"
-        val FIRST_LAUNCH = "firstLaunch"
+        const val TOKEN = "token"
+        const val FIRST_LAUNCH = "firstLaunch"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,29 +75,8 @@ class LoginActivity : AppCompatActivity() {
                 val data =
                     LoginRequest(email, password)
                 loginViewModel.getLogin(data)
-                if (!Prefs.contains(HOME_ID)) {
-                    TuyaHomeSdk.getUserInstance()
-                        .loginWithEmail(
-                            86.toString(),
-                            "aqubayisi@yahoo.com",
-                            "rahasiasaya",
-                            object :
-                                ILoginCallback {
-                                override fun onSuccess(user: User?) {
-                                    observeData()
-                                }
 
-                                override fun onError(code: String?, error: String?) {
-                                    Toast.makeText(
-                                        this@LoginActivity,
-                                        "login tuya error->$error",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
-                            })
-                } else {
-                    observeData()
-                }
+                observeData()
 //                val intent = Intent(this, Intro2Activity::class.java)
 //                startActivity(intent)
 
@@ -123,7 +103,6 @@ class LoginActivity : AppCompatActivity() {
                         binding.PBLogin.visibility = View.VISIBLE
                     }
                     is Resource.Success -> {
-                        binding.PBLogin.visibility = View.GONE
 
                         val result = results.data
                         Log.e("result1", result?.token.toString())
@@ -144,14 +123,37 @@ class LoginActivity : AppCompatActivity() {
 
     private fun verification(result: LoginResponse) {
         Prefs.putString(TOKEN, result.token)
-        if (Prefs.getBoolean(FIRST_LAUNCH, true)) {
-            val intent = Intent(this, Intro2Activity::class.java)
-            startActivity(intent)
-        } else {
-            Prefs.putBoolean(FIRST_LAUNCH, false)
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+
+        TuyaHomeSdk.getUserInstance()
+            .loginWithEmail(
+                86.toString(),
+                "aqubayisi@yahoo.com",
+                "rahasiasaya",
+                object :
+                    ILoginCallback {
+                    override fun onSuccess(user: User?) {
+
+                        binding.PBLogin.visibility = View.GONE
+                        if (Prefs.getBoolean(FIRST_LAUNCH, true)) {
+                            val intent = Intent(this@LoginActivity, Intro2Activity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Prefs.putBoolean(FIRST_LAUNCH, false)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent)
+                        }
+                    }
+
+                    override fun onError(code: String?, error: String?) {
+                        binding.PBLogin.visibility = View.GONE
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "login tuya error->$error",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })
+
     }
 
     private fun showError(errorMsg: String) {

@@ -1,27 +1,28 @@
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CL_add_ss"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/backgrount_outline"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?attr/selectableItemBackground"
-    android:background="@drawable/background_rounded_dark_black"
     android:padding="20dp"
+    android:weightSum="2"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent">
 
     <ImageView
         android:id="@+id/IV_device_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_baseline_add_circle_24"
         app:layout_constraintBottom_toTopOf="@+id/TV_device_type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -33,9 +34,9 @@
         android:layout_marginBottom="2dp"
         android:text="Tambah"
         android:textColor="@color/dark_white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/TV_device_name"
         app:layout_constraintEnd_toEndOf="@+id/IV_device_type"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/IV_device_type"
         app:layout_constraintTop_toBottomOf="@+id/IV_device_type" />
 
@@ -43,12 +44,12 @@
         android:id="@+id/TV_device_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Smart Speaker"
-        android:textColor="@color/dark_white"
-        android:textSize="18sp"
+        android:text="Perangkat"
+        android:textColor="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/TV_device_type"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/TV_device_type"
         app:layout_constraintTop_toBottomOf="@+id/TV_device_type" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

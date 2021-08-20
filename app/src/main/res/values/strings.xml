@@ -25,4 +25,6 @@
     <string name="silakan_masukkan_kata_sandi_baru_akun_kamu_dan_ulangi_kata_sandi_baru">Silakan masukkan kata sandi baru akun kamu dan ulangi kata sandi baru.</string>
     <string name="misi_saya">Misi Saya</string>
     <string name="bantuan">Bantuan</string>
+    <string name="device_mgt_online">ON</string>
+    <string name="device_mgt_offline">OFF</string>
 </resources>
