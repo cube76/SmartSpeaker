@@ -2,11 +2,11 @@ package com.mqa.smartspeaker.core.domain.model;
 
 public class SliderItem {
 
-    private int image;
-    private String title;
-    private String subtitle;
-    private String next;
-    private int state;
+    private final int image;
+    private final String title;
+    private final String subtitle;
+    private final String next;
+    private final int state;
 
     public SliderItem(int image,String title,String subtitle,int state,String next){
         this.image = image;

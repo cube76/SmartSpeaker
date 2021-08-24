@@ -1,11 +1,12 @@
 package com.mqa.smartspeaker.ui.device.lamp
 
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
@@ -18,10 +19,8 @@ import com.mqa.smartspeaker.ui.device.lamp.LampActivity.Companion.DEVICE_ID
 import com.pixplicity.easyprefs.library.Prefs
 import com.tuya.smart.centralcontrol.TuyaLightDevice
 import com.tuya.smart.sdk.api.IResultCallback
-import com.tuya.smart.sdk.centralcontrol.api.ILightListener
 import com.tuya.smart.sdk.centralcontrol.api.ITuyaLightDevice
-import com.tuya.smart.sdk.centralcontrol.api.bean.LightDataPoint
-import dev.jorgecastillo.androidcolorx.library.asHsv
+import com.tuya.smart.sdk.centralcontrol.api.constants.LightMode
 
 
 class ColorFragment : Fragment() {
@@ -38,9 +37,18 @@ class ColorFragment : Fragment() {
     )
     lateinit var color: ColorModel
     var deviceId: String = Prefs.getString(DEVICE_ID, "")
+    val lightDevice: ITuyaLightDevice =
+        TuyaLightDevice(deviceId)
+    var current: Boolean = lightDevice.lightDataPoint.powerSwitch
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    val callback = object : IResultCallback {
+        override fun onError(code: kotlin.String, error: kotlin.String) {
+            Log.i("test_light", "workMode onError:$code$error")
+        }
+
+        override fun onSuccess() {
+            Log.i("test_light", "workMode onSuccess")
+        }
     }
 
     override fun onCreateView(
@@ -51,74 +59,75 @@ class ColorFragment : Fragment() {
         // Inflate the layout for this fragment
         val mArcSeekBar = binding.SBWarm
         mArcSeekBar.setArcColors(mColorSeeds)
-        var hue: Int
-        var saturation: Int = 80
-        var value: Int = 90
-        val lightDevice: ITuyaLightDevice =
-            TuyaLightDevice(deviceId)
-        currentState(lightDevice)
+
+        var hue: Int? = lightDevice.lightDataPoint.colorHSV.h
+        var saturation: Int? = lightDevice.lightDataPoint.colorHSV.s
+        var value: Int? = lightDevice.lightDataPoint.colorHSV.v
+
+        currentState()
+
+        binding.SBWarm.progress = hue!!
         binding.SBWarm.setOnProgressChangeListener(object : ArcSeekBar.OnProgressChangeListener {
             override fun onProgressChanged(seekBar: ArcSeekBar, progress: Int, isUser: Boolean) {
-                val backgroundGradient = binding.view5.background as GradientDrawable
-                backgroundGradient.setColor(seekBar.color)
 
-//                var hex =
-//                    Color.parseColor(java.lang.String.format("#%06X", 0xFFFFFF and seekBar.color))
-//                var hsv = hex.asHsv()
-//                hue = hsv.hue.toInt()
-//                saturation = (hsv.saturation * 100).toInt()
-//                value = (hsv.value * 100).toInt()
+                binding.view5.setColorFilter(seekBar.color)
 
                 hue = progress
-                changeColor(lightDevice, hue, saturation, value)
+                changeColor(lightDevice, hue!!, saturation!!, value!!)
 
                 Log.e("hsv", "$hue+$saturation+$value")
-
-                binding.SBBrightness.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-                    override fun onStopTrackingTouch(seekBar: SeekBar) {
-                    }
-
-                    override fun onStartTrackingTouch(seekBar: SeekBar) {
-                    }
-
-                    override fun onProgressChanged(
-                        seekBar: SeekBar,
-                        progress: Int,
-                        fromUser: Boolean
-                    ) {
-                        binding.TVPersentageBrightness.text = "$progress%"
-                        value = progress
-                        changeColor(lightDevice, hue, saturation, value)
-                    }
-                })
-
-                binding.SBContras.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
-                    override fun onStopTrackingTouch(seekBar: SeekBar) {
-                    }
-
-                    override fun onStartTrackingTouch(seekBar: SeekBar) {
-                    }
-
-                    override fun onProgressChanged(
-                        seekBar: SeekBar,
-                        progress: Int,
-                        fromUser: Boolean
-                    ) {
-                        binding.TVPersentageContras.text = "$progress%"
-                        saturation = progress
-                        changeColor(lightDevice, hue, saturation, value)
-                    }
-                })
             }
 
             override fun onStartTrackingTouch(seekBar: ArcSeekBar) {}
             override fun onStopTrackingTouch(seekBar: ArcSeekBar) {}
         })
 
+        binding.SBBrightness.progress = value!!
+        binding.TVPersentageBrightness.text = "$value%"
+        binding.SBBrightness.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+            }
+
+            override fun onProgressChanged(
+                seekBar: SeekBar,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                binding.TVPersentageBrightness.text = "$progress%"
+                value = progress
+                changeColor(lightDevice, hue!!, saturation!!, value!!)
+            }
+        })
+
+        binding.SBContras.progress = saturation!!
+        binding.TVPersentageContras.text = "$saturation%"
+        binding.SBContras.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+            }
+
+            override fun onProgressChanged(
+                seekBar: SeekBar,
+                progress: Int,
+                fromUser: Boolean
+            ) {
+                binding.TVPersentageContras.text = "$progress%"
+                saturation = progress
+                changeColor(lightDevice, hue!!, saturation!!, value!!)
+            }
+        })
+
         binding.IVWarm.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragment_container_lamp, WarmFragment())
             transaction?.commit()
+
+            lightDevice.workMode(LightMode.MODE_COLOUR, callback)
         }
 
         return binding.root
@@ -126,61 +135,52 @@ class ColorFragment : Fragment() {
 
     fun changeColor(lightDevice: ITuyaLightDevice, hue: Int, saturation: Int, value: Int) {
 
-        lightDevice?.colorHSV(hue, saturation, value, object : IResultCallback {
-            override fun onError(code: String, error: String) {
-                Log.i("test_light", "colorHSV onError:$code$error")
-            }
-
-            override fun onSuccess() {
-                Log.i("test_light", "colorHSV onSuccess:")
-            }
-        })
+        lightDevice.colorHSV(hue, saturation, value, callback)
     }
 
-    fun currentState(lightDevice: ITuyaLightDevice){
-        lightDevice.registerLightListener(object : ILightListener {
-            override fun onDpUpdate(dataPoint: LightDataPoint) { // return LightDataPoint，Contains the values of all function points of the lamp
-                Log.i("test_light", "onDpUpdate:$dataPoint")
-                if(dataPoint.powerSwitch){
-                    binding.btnOnOff.setImageResource(R.drawable.on_icon)
-                    binding.btnOnOff.setOnClickListener {
-                        onOffDevice(lightDevice, false)
-                    }
-                }else{
-                    binding.btnOnOff.setImageResource(R.drawable.off_icon)
-                    binding.btnOnOff.setOnClickListener {
-                        onOffDevice(lightDevice, true)
-                    }
-                }
+    fun currentState() {
+        if (current) {
+            btnOn()
+        } else {
+            btnOff()
+        }
+        binding.btnOnOff.setOnClickListener {
+            if (current) {
+                current = false
+                onOffDevice(false)
+            } else {
+                current = true
+                onOffDevice(true)
             }
+        }
 
-            override fun onRemoved() {
-                Log.i("test_light", "onRemoved")
-            }
-
-            override fun onStatusChanged(status: Boolean) {
-                Log.i("test_light", "onDpUpdate:$status")
-            }
-
-            override fun onNetworkStatusChanged(status: Boolean) {
-                Log.i("test_light", "onDpUpdate:$status")
-            }
-
-            override fun onDevInfoUpdate() {
-                Log.i("test_light", "onDevInfoUpdate:")
-            }
-        })
     }
 
-    fun onOffDevice(lightDevice: ITuyaLightDevice, state: Boolean){
+    fun onOffDevice(state: Boolean) {
         lightDevice.powerSwitch(state, object : IResultCallback {
             override fun onError(code: String, error: String) {
                 Log.i("test_light", "powerSwitch onError:$code$error")
+                current = !current
             }
 
             override fun onSuccess() {
-                Log.i("test_light", "powerSwitch onSuccess:")
+                Log.i("test_light", "powerSwitch onSuccess:${lightDevice.lightDataPoint.powerSwitch}")
+                if (current) {
+                    btnOn()
+                } else {
+                    btnOff()
+                }
             }
         })
+    }
+
+    fun btnOn() {
+        binding.btnOnOff.setImageResource(R.drawable.on_icon)
+        binding.IVRing.visibility = VISIBLE
+    }
+
+    fun btnOff() {
+        binding.btnOnOff.setImageResource(R.drawable.off_icon)
+        binding.IVRing.visibility = INVISIBLE
     }
 }

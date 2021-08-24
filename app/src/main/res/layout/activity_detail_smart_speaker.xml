@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView16" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/ET_rename_smart_speaker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
@@ -89,9 +89,9 @@
         android:id="@+id/imageView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/ET_rename_smart_speaker"
+        app:layout_constraintEnd_toEndOf="@+id/ET_rename_smart_speaker"
+        app:layout_constraintTop_toTopOf="@+id/ET_rename_smart_speaker"
         app:srcCompat="@drawable/ic_baseline_edit_24" />
 
     <Button
@@ -103,7 +103,7 @@
         android:textAllCaps="false"
         android:background="@drawable/btn_yellow"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="@+id/ET_rename_smart_speaker"
+        app:layout_constraintStart_toStartOf="@+id/ET_rename_smart_speaker"
+        app:layout_constraintTop_toBottomOf="@+id/ET_rename_smart_speaker" />
 </androidx.constraintlayout.widget.ConstraintLayout>

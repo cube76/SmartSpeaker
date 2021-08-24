@@ -34,7 +34,7 @@ class ConnectSmartSpeakerActivity : FragmentActivity() {
         binding = ActivityConnectSmartSpeakerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        WifiUtils.withContext(applicationContext).scanWifi(this::getScanResults).start();
+        WifiUtils.withContext(applicationContext).scanWifi(this::getScanResults).start()
 
 //        wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
 //
@@ -101,20 +101,20 @@ class ConnectSmartSpeakerActivity : FragmentActivity() {
     }
 
     private fun scanWifi() {
-        arrayList.clear();
-        registerReceiver(wifiReceiver, IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        arrayList.clear()
+        registerReceiver(wifiReceiver, IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION))
         wifiManager?.startScan()
-        Toast.makeText(this, "Scanning WiFi ...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Scanning WiFi ...", Toast.LENGTH_SHORT).show()
     }
 
     private val wifiReceiver = object : BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
-            context?.unregisterReceiver(this)
+            context.unregisterReceiver(this)
 
             Log.e("hasil", results.toString())
             for (scanResult in results!!) {
-                arrayList.add(scanResult.SSID + " - " + scanResult.capabilities);
+                arrayList.add(scanResult.SSID + " - " + scanResult.capabilities)
                 adapter?.notifyDataSetChanged()
             }
 

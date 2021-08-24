@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
-    private int mItemOffset;
+    private final int mItemOffset;
 
     public SpacesItemDecoration(int itemOffset) {
         mItemOffset = itemOffset;

@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class EmailVerificationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEmailVerificationBinding
-    public val emailVerificationViewModel: EmailVerificationViewModel by viewModels()
+    val emailVerificationViewModel: EmailVerificationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityEmailVerificationBinding.inflate(layoutInflater)

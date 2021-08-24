@@ -6,52 +6,17 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Nama Perangkat"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:cursorVisible="false"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView28"
-        app:layout_constraintTop_toBottomOf="@+id/textView28" />
-
-    <ImageView
-        android:id="@+id/imageView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
-        app:srcCompat="@drawable/ic_baseline_edit_24" />
-
-    <TextView
         android:id="@+id/TV_dialog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="Setelan Variasi Warna Lampu"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.gcssloop.widget.ArcSeekBar
         android:id="@+id/SB_warm"
@@ -165,6 +130,7 @@
             android:src="@drawable/off_icon" />
 
         <ImageView
+            android:id="@+id/IV_ring"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -176,11 +142,12 @@
         android:id="@+id/view5"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/circle"
+        android:src="@drawable/ic_lamp_svg"
         app:layout_constraintBottom_toBottomOf="@+id/SB_warm"
         app:layout_constraintEnd_toEndOf="@+id/SB_warm"
         app:layout_constraintStart_toStartOf="@+id/SB_warm"
-        app:layout_constraintTop_toTopOf="@+id/SB_warm" />
+        app:layout_constraintTop_toTopOf="@+id/SB_warm"
+        app:tint="@color/yellow" />
 
     <ImageView
         android:id="@+id/IV_warm"

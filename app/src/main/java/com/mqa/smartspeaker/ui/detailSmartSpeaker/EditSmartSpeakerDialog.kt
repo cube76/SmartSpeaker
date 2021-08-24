@@ -23,7 +23,7 @@ class EditSmartSpeakerDialog (context: Context) : Dialog(context) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         setContentView(binding.root)
 
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         binding.btnCancel.setOnClickListener {
             cancel()

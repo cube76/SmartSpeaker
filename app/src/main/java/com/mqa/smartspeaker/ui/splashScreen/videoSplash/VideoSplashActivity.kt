@@ -41,7 +41,7 @@ class VideoSplashActivity : AppCompatActivity() {
         }
 
         binding.IVMinimize.setOnClickListener {
-            binding.andExoPlayerView.layoutParams.height = resources.getDimensionPixelSize(R.dimen.video_dip);
+            binding.andExoPlayerView.layoutParams.height = resources.getDimensionPixelSize(R.dimen.video_dip)
             binding.andExoPlayerView.requestLayout()
             binding.IVMaximize.visibility = View.VISIBLE
             binding.IVMinimize.visibility = View.GONE

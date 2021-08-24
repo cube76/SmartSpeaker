@@ -24,8 +24,8 @@ import java.util.List;
 
 public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
 
-    private List<SliderItem> sliderItems;
-    private ViewPager2 viewPager2;
+    private final List<SliderItem> sliderItems;
+    private final ViewPager2 viewPager2;
 //    private Context context;
 
     public SliderAdapter(List<SliderItem> sliderItems, ViewPager2 viewPager2) {
@@ -60,12 +60,12 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
     }
 
     public class SliderViewHolder extends RecyclerView.ViewHolder {
-        private ImageView image;
-        private TextView title;
-        private TextView subtitle;
-        private ImageView state;
-        private TextView next;
-        private LinearLayout btn_next;
+        private final ImageView image;
+        private final TextView title;
+        private final TextView subtitle;
+        private final ImageView state;
+        private final TextView next;
+        private final LinearLayout btn_next;
 
         SliderViewHolder(@NonNull View itemView) {
             super(itemView);

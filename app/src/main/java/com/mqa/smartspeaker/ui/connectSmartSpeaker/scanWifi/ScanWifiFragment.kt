@@ -44,10 +44,6 @@ class ScanWifiFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,51 +53,21 @@ class ScanWifiFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-//        listView = binding.includeWifi.RVWifiList
-//        wifiManager = activity?.applicationContext?.getSystemService(Context.WIFI_SERVICE) as WifiManager?
-//
-//        if (!wifiManager!!.isWifiEnabled) {
-//            Toast.makeText(context, "WiFi is disabled ... We need to enable it", Toast.LENGTH_LONG)
-//                .show()
-//            wifiManager!!.isWifiEnabled = true
-//        }
-//
-//        adapter = ArrayAdapter<Any?>(requireContext(), R.layout.simple_list_item_1,
-//            arrayList as List<Any?>
-//        )
-//        listView!!.adapter = adapter
-//        scanWifi()
-//        val intentFilter = IntentFilter()
-//        intentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION)
-//        context?.registerReceiver(wifiScanReceiver, intentFilter)
-//
-//        val success = wifiManager.startScan()
-//        Log.e("success", success.toString())
-//        if (!success) {
-//            // scan failure handling
-//            scanFailure()
-//        }
-
-    }
-
     private fun scanWifi() {
-        arrayList.clear();
-        context?.registerReceiver(wifiReceiver, IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+        arrayList.clear()
+        context?.registerReceiver(wifiReceiver, IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION))
         wifiManager?.startScan()
-        Toast.makeText(context, "Scanning WiFi ...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Scanning WiFi ...", Toast.LENGTH_SHORT).show()
     }
 
     private val wifiReceiver = object : BroadcastReceiver() {
 
         override fun onReceive(context: Context, intent: Intent) {
-            context?.unregisterReceiver(this)
+            context.unregisterReceiver(this)
 
             Log.e("hasil", results.toString())
             for (scanResult in results!!) {
-                arrayList.add(scanResult.SSID + " - " + scanResult.capabilities);
+                arrayList.add(scanResult.SSID + " - " + scanResult.capabilities)
                 adapter?.notifyDataSetChanged()
             }
 

@@ -14,6 +14,12 @@ import androidx.fragment.app.Fragment
 import com.gcssloop.widget.ArcSeekBar
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.FragmentWarmBinding
+import com.pixplicity.easyprefs.library.Prefs
+import com.tuya.smart.centralcontrol.TuyaLightDevice
+import com.tuya.smart.sdk.api.IResultCallback
+import com.tuya.smart.sdk.centralcontrol.api.ITuyaLightDevice
+import com.tuya.smart.sdk.centralcontrol.api.bean.LightDataPoint
+import com.tuya.smart.sdk.centralcontrol.api.constants.LightMode
 import dev.jorgecastillo.androidcolorx.library.asHsv
 import java.lang.String
 import kotlin.math.roundToInt
@@ -27,10 +33,8 @@ class WarmFragment : Fragment() {
         Color.parseColor("#ffffff"),
         Color.parseColor("#d2effd")
     )
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    var current: Boolean = Prefs.getBoolean(LampActivity.POWER, false)
+    var deviceId: kotlin.String = Prefs.getString(LampActivity.DEVICE_ID, "")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,22 +42,37 @@ class WarmFragment : Fragment() {
     ): View? {
         _binding = FragmentWarmBinding.inflate(inflater, container, false)
 
+        val lightDevice: ITuyaLightDevice =
+            TuyaLightDevice(deviceId)
+
+        val callback = object : IResultCallback {
+            override fun onError(code: kotlin.String, error: kotlin.String) {
+                Log.i("test_light", "workMode onError:$code$error")
+            }
+
+            override fun onSuccess() {
+                Log.i("test_light", "workMode onSuccess")
+            }
+        }
+        Log.e("lightType", "${lightDevice.lightType()}")
+        Log.e("lightDataPoint", "${lightDevice.lightDataPoint.colorTemperature}")
+
         val mArcSeekBar = binding.SBColor
         mArcSeekBar.setArcColors(colors)
         mArcSeekBar.setOnProgressChangeListener(object : ArcSeekBar.OnProgressChangeListener {
-            @RequiresApi(Build.VERSION_CODES.N)
             override fun onProgressChanged(seekBar: ArcSeekBar, progress: Int, isUser: Boolean) {
                 val backgroundGradient = binding.view5.background as GradientDrawable
                 backgroundGradient.setColor(seekBar.color)
+//
+//                var hex = Color.parseColor(String.format("#%06X", 0xFFFFFF and seekBar.color))
+//                var hsv = hex.asHsv()
+//                var hue = hsv.hue
+//                var saturation = hsv.saturation
+//                var value = hsv.value
+//                Log.e("hsv", "$hue+$saturation+$value")
+//                Log.e("hsvtoint", "${hue.roundToInt()}+${(saturation * 100).roundToInt()}+${(value * 100).roundToInt()}")
 
-                var hex = Color.parseColor(String.format("#%06X", 0xFFFFFF and seekBar.color))
-                var hsv = hex.asHsv()
-                var hue = hsv.hue
-                var saturation = hsv.saturation
-                var value = hsv.value
-                Log.e("hsv", "$hue+$saturation+$value")
-                Log.e("hsvtoint", "${hue.roundToInt()}+${(saturation * 100).roundToInt()}+${(value * 100).roundToInt()}")
-
+                lightDevice.colorTemperature(progress, callback)
             }
 
             override fun onStartTrackingTouch(seekBar: ArcSeekBar) {}
@@ -70,6 +89,7 @@ class WarmFragment : Fragment() {
 
             override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
                 binding.TVPersentage.text = "$progress%"
+                lightDevice.brightness(progress, callback)
             }
         })
 
@@ -77,6 +97,7 @@ class WarmFragment : Fragment() {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragment_container_lamp, ColorFragment())
             transaction?.commit()
+            lightDevice.workMode(LightMode.MODE_COLOUR, callback)
         }
 
         return binding.root

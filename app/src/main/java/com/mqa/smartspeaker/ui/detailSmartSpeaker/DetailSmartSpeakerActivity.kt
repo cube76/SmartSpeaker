@@ -16,7 +16,7 @@ class DetailSmartSpeakerActivity : AppCompatActivity() {
         binding = ActivityDetailSmartSpeakerBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.editTextTextPersonName.setOnClickListener {
+        binding.ETRenameSmartSpeaker.setOnClickListener {
             EditSmartSpeakerDialog(this@DetailSmartSpeakerActivity).show()
         }
 

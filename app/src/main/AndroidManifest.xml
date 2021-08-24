@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/NoActionBar"
         tools:replace="android:allowBackup,android:supportsRtl">
+        <activity android:name=".ui.device.lamp.Lamp2Activity"></activity>
 
         <meta-data
             android:name="TUYA_SMART_APPKEY"
@@ -26,7 +27,7 @@
             android:name="TUYA_SMART_SECRET"
             android:value="ahdswjs5m93xvus4pjhavdsc4mqhgsp5" />
 
-        <activity android:name=".ui.device.lamp.LampActivity"></activity>
+        <activity android:name=".ui.device.lamp.LampActivity" />
         <activity android:name=".ui.connectSmartSpeaker.ConnectSmartSpeakerActivity" />
         <activity android:name=".ui.detailSmartSpeaker.DetailSmartSpeakerActivity" />
         <activity android:name=".ui.splashScreen.videoSplash.VideoSplashActivity" />
