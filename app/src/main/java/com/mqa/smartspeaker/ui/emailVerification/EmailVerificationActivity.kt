@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.databinding.ActivityEmailVerificationBinding
-import com.mqa.smartspeaker.ui.register.RegisterViewModel
+import com.mqa.smartspeaker.ui.dialog.SuccessDialogVerifyEmail
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -81,7 +81,7 @@ class EmailVerificationActivity : AppCompatActivity() {
                         val result = results.data
                         Log.e("result1", result?.message.toString())
                         if (result != null) {
-                            SuccessDialog(this@EmailVerificationActivity).show()
+                            SuccessDialogVerifyEmail(this@EmailVerificationActivity).show()
                         }
                     }
                     is Resource.Error -> {

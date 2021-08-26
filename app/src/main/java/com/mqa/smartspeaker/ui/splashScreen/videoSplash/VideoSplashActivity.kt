@@ -38,6 +38,9 @@ class VideoSplashActivity : AppCompatActivity() {
             binding.IVMaximize.visibility = View.GONE
             binding.IVMinimize.visibility = View.VISIBLE
             binding.btnSkip.visibility = View.GONE
+            binding.textView19.visibility = View.GONE
+            binding.textView20.visibility = View.GONE
+            binding.imageView11.visibility = View.GONE
         }
 
         binding.IVMinimize.setOnClickListener {
@@ -46,6 +49,9 @@ class VideoSplashActivity : AppCompatActivity() {
             binding.IVMaximize.visibility = View.VISIBLE
             binding.IVMinimize.visibility = View.GONE
             binding.btnSkip.visibility = View.VISIBLE
+            binding.textView19.visibility = View.VISIBLE
+            binding.textView20.visibility = View.VISIBLE
+            binding.imageView11.visibility = View.VISIBLE
         }
 
         binding.btnSkip.setOnClickListener {

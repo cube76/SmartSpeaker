@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.Window
@@ -15,10 +16,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.ActivityLampBinding
+import com.mqa.smartspeaker.ui.dialog.EditSmartSpeakerDialog
+import com.mqa.smartspeaker.ui.dialog.InputPasswordWifiDialog
+import com.mqa.smartspeaker.ui.dialog.RemoveDeviceDialog
+import com.mqa.smartspeaker.ui.pairing.PairingActivity
 import com.pixplicity.easyprefs.library.Prefs
 import com.tuya.smart.centralcontrol.TuyaLightDevice
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.sdk.api.IResultCallback
+import com.tuya.smart.sdk.api.ITuyaDevice
 import com.tuya.smart.sdk.centralcontrol.api.ITuyaLightDevice
 
 
@@ -29,26 +35,26 @@ class LampActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityLampBinding
-    lateinit var deviceId: String
+    var deviceId: String =Prefs.getString(DEVICE_ID, "")
     lateinit var name: String
-//    val deviceId: String = Prefs.getString(DEVICE_ID, "")
+    val mDevice: ITuyaDevice = TuyaHomeSdk.newDeviceInstance(deviceId)
+    val lightDevice: ITuyaLightDevice = TuyaLightDevice(deviceId)
+    var current: Boolean = lightDevice.lightDataPoint.powerSwitch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLampBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        deviceId = Prefs.getString(DEVICE_ID, "")
-        val mDevice = TuyaHomeSdk.newDeviceInstance(deviceId)
-        val lightDevice: ITuyaLightDevice =
-            TuyaLightDevice(deviceId)
+        currentState()
+        removeDevice()
+
         val workMode = lightDevice.lightDataPoint.workMode.name
         name = intent.getStringExtra("name").toString()
 
         if (workMode == "MODE_COLOUR") {
             binding.PBLamp.visibility = GONE
             val mainFragment: ColorFragment = ColorFragment()
-//                    mainFragment.arguments = bundle
             supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container_lamp, mainFragment)
                 .commit()
@@ -105,4 +111,55 @@ class LampActivity : AppCompatActivity() {
         binding.ETRenameLamp.setText(name)
     }
 
+    fun currentState() {
+        if (current) {
+            btnOn()
+        } else {
+            btnOff()
+        }
+        binding.btnOnOff.setOnClickListener {
+            if (current) {
+                current = false
+                onOffDevice(false)
+            } else {
+                current = true
+                onOffDevice(true)
+            }
+        }
+
+    }
+
+    fun onOffDevice(state: Boolean) {
+        lightDevice.powerSwitch(state, object : IResultCallback {
+            override fun onError(code: String, error: String) {
+                Log.i("test_light", "powerSwitch onError:$code$error")
+            }
+
+            override fun onSuccess() {
+                Log.i("test_light", "powerSwitch onSuccess:${lightDevice.lightDataPoint.powerSwitch}")
+                if (current) {
+                    btnOn()
+                } else {
+                    btnOff()
+                }
+            }
+        })
+    }
+
+    fun btnOn() {
+        binding.btnOnOff.setImageResource(R.drawable.on_icon)
+        binding.IVRing.visibility = VISIBLE
+    }
+
+    fun btnOff() {
+        binding.btnOnOff.setImageResource(R.drawable.off_icon)
+        binding.IVRing.visibility = View.INVISIBLE
+    }
+
+    fun removeDevice(){
+        binding.IVDelete.setOnClickListener {
+            val dialog = RemoveDeviceDialog()
+            dialog.show(this.supportFragmentManager,"remove_dialog")
+        }
+    }
 }

@@ -17,11 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.ui.device.lamp.LampActivity
 import com.mqa.smartspeaker.ui.device.lamp.LampActivity.Companion.DEVICE_ID
-import com.mqa.smartspeaker.ui.device.lamp.LampActivity.Companion.H
-import com.mqa.smartspeaker.ui.device.lamp.LampActivity.Companion.POWER
-import com.mqa.smartspeaker.ui.device.lamp.LampActivity.Companion.S
-import com.mqa.smartspeaker.ui.device.lamp.LampActivity.Companion.V
-import com.mqa.smartspeaker.ui.device.lamp.LampActivity.Companion.WORK_MODE
 import com.mqa.smartspeaker.ui.pairing.PairingActivity
 import com.pixplicity.easyprefs.library.Prefs
 import com.tuya.smart.android.user.api.ILoginCallback
@@ -117,7 +112,6 @@ class DeviceAdapter(
     }
 
     override fun getItemCount(): Int {
-        Log.e("size", (data.size + string.size).toString())
         return data.size + string.size
     }
 

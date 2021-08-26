@@ -84,8 +84,7 @@ dependencies {
     implementation 'com.thanosfisherman.wifiutils:wifiutils:1.6.5'
     implementation 'com.gcssloop.widget:arc-seekbar:1.7.0'
     implementation 'me.jorgecastillo:androidcolorx:0.2.0'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.2"
+    implementation 'pub.devrel:easypermissions:3.0.0'
 
     implementation "androidx.cardview:cardview:$cardview_version"
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"

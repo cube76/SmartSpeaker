@@ -34,12 +34,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="50dp"
-        android:layout_marginBottom="32dp"
         android:max="100"
-        android:min="1"
-        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/TV_persentage"
-        app:layout_constraintHorizontal_bias="0.255"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView18" />
 
     <ImageView
@@ -58,6 +57,7 @@
         android:layout_height="wrap_content"
         android:paddingEnd="16dp"
         android:textSize="16sp"
+        android:text="0%"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/SB_brightness_warm"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,37 +74,11 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-        app:layout_constraintEnd_toEndOf="@+id/SB_brightness_warm"
-        app:layout_constraintStart_toStartOf="@+id/SB_brightness_warm">
-
-        <ImageButton
-            android:id="@+id/btn_on_off"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/ic_baseline_edit_24"
-            android:foreground="?attr/selectableItemBackground"
-            android:src="@drawable/off_icon" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/on_ring_icon" />
-
-    </RelativeLayout>
     <ImageView
         android:id="@+id/view5"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@drawable/circle"
+        android:src="@drawable/ic_lamp_svg"
         app:layout_constraintBottom_toBottomOf="@+id/SB_color"
         app:layout_constraintEnd_toEndOf="@+id/SB_color"
         app:layout_constraintStart_toStartOf="@+id/SB_color"

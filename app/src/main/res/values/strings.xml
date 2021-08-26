@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartSpeaker</string>
+    <string name="app_name">Indi</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -27,4 +27,18 @@
     <string name="bantuan">Bantuan</string>
     <string name="device_mgt_online">ON</string>
     <string name="device_mgt_offline">OFF</string>
+    <string name="_1_pastikan_lampu_sudah_terpasang_dan_sudah_menyala">Pastikan lampu sudah terpasang dan sudah menyala,</string>
+    <string name="_2_mati_dan_nyalakan_smart_lamp_kamu_dengan_cepat_sampai_lampu_berkedip_kedip">Mati dan nyalakan Smart Lamp kamu dengan cepat sampai lampu berkedip-kedip</string>
+    <string name="_3_setelah_lampu_berkedip_dengan_cepat_tekan_tombol_b_konfirmasi_b_untuk_melanjutkan">Setelah lampu berkedip dengan cepat, tekan tombol <b>konfirmasi</b> untuk melanjutkan</string>
+    <string name="konfirmasi_lampu_berkedip_cepat">Konfirmasi lampu berkedip cepat</string>
+    <string name="perangkatmu_sedang_melakukan_pencarian_wi_fi_terdekat_tunggu_sebentar_lagi_ya">Perangkatmu sedang melakukan pencarian Wi-Fi terdekat. Tunggu sebentar lagi ya!</string>
+    <string name="mencari_jaringan_wi_fi_terdekat">Mencari jaringan Wi-Fi terdekat...</string>
+    <string name="menghubungkan_smart_lamp_dengan_jaringan_wi_fi">Menghubungkan Smart Lamp dengan jaringan Wi-Fi</string>
+    <string name="tunggu_sebentar_lagi_ya_perangkatmu_sedang_melakukan_penyambungan_dengan_wifi_dan_smartphone">Tunggu sebentar lagi ya! Perangkatmu sedang melakukan penyambungan dengan wifi dan smartphone.</string>
+    <string name="pass_telah_diperbarui">Kata sandi telah diperbarui</string>
+    <string name="berhasil">Berhasil</string>
+    <string name="aktifasi_berhasil">Aktivasi Berhasil</string>
+    <string name="lanjut_login">Silahkan lanjutkan Login</string>
+    <string name="remove_device">Berhasil Perangkat telah dihapus dari aplikasi</string>
+    <string name="hapus_lamp">Apakah kamu yakin akan menghapus Smart Lamp ini dari aplikasi?</string>
 </resources>

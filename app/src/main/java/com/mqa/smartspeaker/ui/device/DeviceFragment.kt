@@ -37,8 +37,8 @@ class DeviceFragment : Fragment() {
         binding.refreshDevice.isRefreshing = true
         showList()
         binding.refreshDevice.setOnRefreshListener {
-            view.performClick()
-//            showList()
+//            view.performClick()
+            showList()
         }
 
         return binding.root

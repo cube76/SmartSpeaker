@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
         android:name=".MyApplication"
@@ -18,7 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/NoActionBar"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.device.lamp.Lamp2Activity"></activity>
 
         <meta-data
             android:name="TUYA_SMART_APPKEY"
@@ -43,7 +42,8 @@
         <activity android:name=".ui.forgetPassword.inputCode.InputCodeActivity" />
         <activity android:name=".ui.forgetPassword.inputEmail.InputEmailActivity" />
         <activity android:name=".ui.forgetPassword.renewPassword.RenewPasswordActivity" />
-        <activity android:name=".ui.pairing.PairingActivity" />
+        <activity android:name=".ui.pairing.PairingActivity" >
+        </activity>
         <activity android:name=".ui.intro.Intro2Activity" /> <!-- <activity android:name=".ui.intro.IntroActivity"> -->
         <!-- </activity> -->
         <activity android:name=".ui.register.RegisterActivity" />

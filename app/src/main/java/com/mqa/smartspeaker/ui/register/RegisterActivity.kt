@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.data.Resource
@@ -25,11 +24,9 @@ import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
 import com.tuya.smart.sdk.api.IResultCallback
 import dagger.hilt.android.AndroidEntryPoint
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.streams.asSequence
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {

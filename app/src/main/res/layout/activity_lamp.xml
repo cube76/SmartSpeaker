@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_primary"
     tools:context=".ui.device.lamp.LampActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -92,11 +93,40 @@
         android:id="@+id/fragment_container_lamp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ET_rename_lamp" />
 
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/btn_on_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ic_baseline_edit_24"
+            android:foreground="?attr/selectableItemBackground"
+            android:src="@drawable/off_icon" />
+
+        <ImageView
+            android:id="@+id/IV_ring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/on_ring_icon" />
+
+    </RelativeLayout>
     <ProgressBar
         android:id="@+id/PB_Lamp"
         style="?android:attr/progressBarStyle"

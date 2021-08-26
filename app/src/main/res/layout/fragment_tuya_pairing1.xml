@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent"
+    android:background="@color/black_primary">
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="129dp"
+        android:layout_height="144dp"
+        android:src="@drawable/lamp_icon"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="44dp"
+            android:text="Langkah 1 dari 3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Atur Ulang Smart Lamp"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/textView4"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <TextView
+            android:id="@+id/TV_whattodo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/_1_pastikan_lampu_sudah_terpasang_dan_sudah_menyala"
+            android:textColor="@color/dark_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView43"
+            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+        <TextView
+            android:id="@+id/TV_whattodo2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/_2_mati_dan_nyalakan_smart_lamp_kamu_dengan_cepat_sampai_lampu_berkedip_kedip"
+            android:textColor="@color/dark_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView44"
+            app:layout_constraintTop_toBottomOf="@+id/TV_whattodo" />
+
+        <TextView
+            android:id="@+id/TV_whattodo3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/_3_setelah_lampu_berkedip_dengan_cepat_tekan_tombol_b_konfirmasi_b_untuk_melanjutkan"
+            android:textColor="@color/dark_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView45"
+            app:layout_constraintTop_toBottomOf="@+id/TV_whattodo2" />
+
+        <CheckBox
+            android:id="@+id/CB_confirm_kedip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="@string/konfirmasi_lampu_berkedip_cepat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TV_whattodo3" />
+
+        <Button
+            android:id="@+id/btn_lamp_second_step"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="44dp"
+            android:background="@drawable/btn_yellow"
+            android:foreground="?attr/selectableItemBackground"
+            android:text="Lanjutkan"
+            android:textAllCaps="false"
+            android:enabled="false"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CB_confirm_kedip" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1."
+            android:textColor="@color/dark_white"
+            app:layout_constraintStart_toStartOf="@+id/textView41"
+            app:layout_constraintTop_toTopOf="@+id/TV_whattodo" />
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2."
+            android:textColor="@color/dark_white"
+            app:layout_constraintStart_toStartOf="@+id/textView41"
+            app:layout_constraintTop_toTopOf="@+id/TV_whattodo2" />
+
+        <TextView
+            android:id="@+id/textView45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3."
+            android:textColor="@color/dark_white"
+            app:layout_constraintStart_toStartOf="@+id/textView41"
+            app:layout_constraintTop_toTopOf="@+id/TV_whattodo3" />
+
+        <View
+            android:id="@+id/view_unable"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/view_disable"
+            android:translationZ="90dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_lamp_second_step"
+            app:layout_constraintEnd_toEndOf="@+id/btn_lamp_second_step"
+            app:layout_constraintStart_toStartOf="@+id/btn_lamp_second_step"
+            app:layout_constraintTop_toTopOf="@+id/btn_lamp_second_step" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

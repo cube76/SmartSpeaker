@@ -8,11 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
 import com.mqa.smartspeaker.databinding.ActivityRenewPasswordBinding
-import com.mqa.smartspeaker.ui.emailVerification.SuccessDialog
 import com.mqa.smartspeaker.ui.forgetPassword.ForgetPasswordActivity.Companion.CODE
 import com.mqa.smartspeaker.ui.forgetPassword.ForgetPasswordActivity.Companion.EMAIL
-import com.mqa.smartspeaker.ui.forgetPassword.SuccessDialogForgetPass
-import com.pixplicity.easyprefs.library.Prefs
+import com.mqa.smartspeaker.ui.dialog.SuccessDialogForgetPass
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

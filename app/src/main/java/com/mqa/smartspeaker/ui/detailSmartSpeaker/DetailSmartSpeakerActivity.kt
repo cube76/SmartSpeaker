@@ -1,12 +1,9 @@
 package com.mqa.smartspeaker.ui.detailSmartSpeaker
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.ActivityDetailSmartSpeakerBinding
-import com.mqa.smartspeaker.ui.emailVerification.SuccessDialog
+import com.mqa.smartspeaker.ui.dialog.EditSmartSpeakerDialog
 
 class DetailSmartSpeakerActivity : AppCompatActivity() {
 

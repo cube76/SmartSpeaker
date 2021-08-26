@@ -64,8 +64,6 @@ class ColorFragment : Fragment() {
         var saturation: Int? = lightDevice.lightDataPoint.colorHSV.s
         var value: Int? = lightDevice.lightDataPoint.colorHSV.v
 
-        currentState()
-
         binding.SBWarm.progress = hue!!
         binding.SBWarm.setOnProgressChangeListener(object : ArcSeekBar.OnProgressChangeListener {
             override fun onProgressChanged(seekBar: ArcSeekBar, progress: Int, isUser: Boolean) {
@@ -127,7 +125,7 @@ class ColorFragment : Fragment() {
             transaction?.replace(R.id.fragment_container_lamp, WarmFragment())
             transaction?.commit()
 
-            lightDevice.workMode(LightMode.MODE_COLOUR, callback)
+            lightDevice.workMode(LightMode.MODE_WHITE, callback)
         }
 
         return binding.root
@@ -138,49 +136,4 @@ class ColorFragment : Fragment() {
         lightDevice.colorHSV(hue, saturation, value, callback)
     }
 
-    fun currentState() {
-        if (current) {
-            btnOn()
-        } else {
-            btnOff()
-        }
-        binding.btnOnOff.setOnClickListener {
-            if (current) {
-                current = false
-                onOffDevice(false)
-            } else {
-                current = true
-                onOffDevice(true)
-            }
-        }
-
-    }
-
-    fun onOffDevice(state: Boolean) {
-        lightDevice.powerSwitch(state, object : IResultCallback {
-            override fun onError(code: String, error: String) {
-                Log.i("test_light", "powerSwitch onError:$code$error")
-                current = !current
-            }
-
-            override fun onSuccess() {
-                Log.i("test_light", "powerSwitch onSuccess:${lightDevice.lightDataPoint.powerSwitch}")
-                if (current) {
-                    btnOn()
-                } else {
-                    btnOff()
-                }
-            }
-        })
-    }
-
-    fun btnOn() {
-        binding.btnOnOff.setImageResource(R.drawable.on_icon)
-        binding.IVRing.visibility = VISIBLE
-    }
-
-    fun btnOff() {
-        binding.btnOnOff.setImageResource(R.drawable.off_icon)
-        binding.IVRing.visibility = INVISIBLE
-    }
 }

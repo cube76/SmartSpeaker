@@ -33,17 +33,16 @@ class WarmFragment : Fragment() {
         Color.parseColor("#ffffff"),
         Color.parseColor("#d2effd")
     )
-    var current: Boolean = Prefs.getBoolean(LampActivity.POWER, false)
     var deviceId: kotlin.String = Prefs.getString(LampActivity.DEVICE_ID, "")
+    val lightDevice: ITuyaLightDevice =
+        TuyaLightDevice(deviceId)
+    var current: Boolean = lightDevice.lightDataPoint.powerSwitch
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentWarmBinding.inflate(inflater, container, false)
-
-        val lightDevice: ITuyaLightDevice =
-            TuyaLightDevice(deviceId)
 
         val callback = object : IResultCallback {
             override fun onError(code: kotlin.String, error: kotlin.String) {
@@ -54,15 +53,12 @@ class WarmFragment : Fragment() {
                 Log.i("test_light", "workMode onSuccess")
             }
         }
-        Log.e("lightType", "${lightDevice.lightType()}")
-        Log.e("lightDataPoint", "${lightDevice.lightDataPoint.colorTemperature}")
 
         val mArcSeekBar = binding.SBColor
         mArcSeekBar.setArcColors(colors)
         mArcSeekBar.setOnProgressChangeListener(object : ArcSeekBar.OnProgressChangeListener {
             override fun onProgressChanged(seekBar: ArcSeekBar, progress: Int, isUser: Boolean) {
-                val backgroundGradient = binding.view5.background as GradientDrawable
-                backgroundGradient.setColor(seekBar.color)
+                binding.view5.setColorFilter(seekBar.color)
 //
 //                var hex = Color.parseColor(String.format("#%06X", 0xFFFFFF and seekBar.color))
 //                var hsv = hex.asHsv()

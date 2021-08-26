@@ -13,6 +13,7 @@ import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.LoginResponse
 import com.mqa.smartspeaker.core.utils.Internet
+import com.mqa.smartspeaker.core.utils.SheetDialog
 import com.mqa.smartspeaker.databinding.ActivityLoginBinding
 import com.mqa.smartspeaker.ui.forgetPassword.inputEmail.InputEmailActivity
 import com.mqa.smartspeaker.ui.intro.Intro2Activity
@@ -56,18 +57,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.includeSheet.IVCloseSheet.setOnClickListener {
-            Internet.toggle(false, binding.includeSheet.root, binding.parent)
+            SheetDialog.toggle(false, binding.includeSheet.root, binding.parent)
         }
         binding.includeSheet.btnSettings.setOnClickListener {
             val intent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
             startActivity(intent)
         }
         binding.includeSheet.btnTryAgain.setOnClickListener {
-            Internet.toggle(false, binding.includeSheet.root, binding.parent)
+            SheetDialog.toggle(false, binding.includeSheet.root, binding.parent)
         }
         binding.btnLogin.setOnClickListener {
             if (!Internet.isOnline(applicationContext)) {
-                Internet.toggle(true, binding.includeSheet.root, binding.parent)
+                SheetDialog.toggle(true, binding.includeSheet.root, binding.parent)
             } else {
                 val email = binding.ETEmail.text.toString()
                 val password = binding.ETPassword.text.toString()

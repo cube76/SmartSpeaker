@@ -37,12 +37,4 @@ object Internet {
         }
         return false
     }
-
-    fun toggle(show: Boolean, view: View, parent:View) {
-        val transition: Transition = Slide(Gravity.BOTTOM)
-        transition.duration = 600
-        transition.addTarget(view)
-        TransitionManager.beginDelayedTransition(parent as ViewGroup?, transition)
-        view.visibility = if (show) View.VISIBLE else View.GONE
-    }
 }

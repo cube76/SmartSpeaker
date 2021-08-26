@@ -1,4 +1,4 @@
-package com.mqa.smartspeaker.ui.detailSmartSpeaker
+package com.mqa.smartspeaker.ui.dialog
 
 import android.R
 import android.app.Dialog

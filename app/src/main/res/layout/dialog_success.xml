@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_rounded">
+    android:background="@drawable/background_dialog_transparent">
 
     <ImageView
         android:id="@+id/imageView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/TV_title_dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,31 +21,31 @@
         app:srcCompat="@drawable/check_icon" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/TV_title_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Activasi Berhasil"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView16"
+        app:layout_constraintBottom_toTopOf="@+id/TV_success_dialog"
         app:layout_constraintEnd_toEndOf="@+id/imageView10"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/imageView10"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/TV_success_dialog"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="8dp"
         android:text="Silahkan lanjutkan login"
         app:layout_constraintBottom_toTopOf="@+id/btn_back"
-        app:layout_constraintEnd_toEndOf="@+id/textView14"
+        app:layout_constraintEnd_toEndOf="@+id/TV_title_dialog"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintStart_toStartOf="@+id/TV_title_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/TV_title_dialog" />
 
     <Button
         android:id="@+id/btn_back"
@@ -53,14 +53,14 @@
         android:layout_height="34dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_white"
+        android:background="@drawable/btn_white_dialog"
         android:foreground="?attr/selectableItemBackground"
         android:text="Kembali"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView16"
+        app:layout_constraintEnd_toEndOf="@+id/TV_success_dialog"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/textView16"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintStart_toStartOf="@+id/TV_success_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/TV_success_dialog" />
 </androidx.constraintlayout.widget.ConstraintLayout>
