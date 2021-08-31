@@ -37,7 +37,7 @@ class RegisterActivity : AppCompatActivity() {
     var email: String = ""
     var homeId: String? = ""
     companion object {
-        val HOME_ID = "homeId"
+        const val HOME_ID = "homeId"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

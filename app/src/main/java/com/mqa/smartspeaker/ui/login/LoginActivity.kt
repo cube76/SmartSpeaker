@@ -47,10 +47,10 @@ class LoginActivity : AppCompatActivity() {
         Log.e("token", "" + Prefs.getString(TOKEN, ""))
         if (Prefs.contains(TOKEN)) {
             if (Prefs.getBoolean(FIRST_LAUNCH, true)) {
+                Prefs.putBoolean(FIRST_LAUNCH, false)
                 val intent = Intent(this, Intro2Activity::class.java)
                 startActivity(intent)
             } else {
-                Prefs.putBoolean(FIRST_LAUNCH, false)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
@@ -97,7 +97,6 @@ class LoginActivity : AppCompatActivity() {
     private fun observeData() {
         with(binding) {
             loginViewModel.getLogin.observe(this@LoginActivity, { results ->
-                Log.e("result0", results.message.toString())
                 when (results) {
                     is Resource.Loading -> {
                         binding.PBLogin.bringToFront()
@@ -106,10 +105,43 @@ class LoginActivity : AppCompatActivity() {
                     is Resource.Success -> {
 
                         val result = results.data
-                        Log.e("result1", result?.token.toString())
                         if (result != null) {
                             token = result
                             verification(token)
+                        }
+                    }
+                    is Resource.Error -> {
+                        binding.PBLogin.visibility = View.GONE
+                        Log.e("error", "" + results.message.toString())
+                        showError(results.message.toString())
+                    }
+                }
+            })
+        }
+    }
+
+    private fun observeDataUser() {
+        with(binding) {
+            loginViewModel.getUser.observe(this@LoginActivity, { results ->
+                Log.e("result0", results.message.toString())
+                when (results) {
+                    is Resource.Loading -> {
+                        binding.PBLogin.bringToFront()
+                        binding.PBLogin.visibility = View.VISIBLE
+                    }
+                    is Resource.Success -> {
+                        binding.PBLogin.visibility = View.GONE
+
+                        val result = results.data
+                        Log.e("result1", result?.user.toString())
+                        Prefs.putString(HOME_ID, result?.user!!.homeId)
+                        if (Prefs.getBoolean(FIRST_LAUNCH, false)) {
+                            val intent = Intent(this@LoginActivity, Intro2Activity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Prefs.putBoolean(FIRST_LAUNCH, false)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                            startActivity(intent)
                         }
                     }
                     is Resource.Error -> {
@@ -133,16 +165,8 @@ class LoginActivity : AppCompatActivity() {
                 object :
                     ILoginCallback {
                     override fun onSuccess(user: User?) {
-
-                        binding.PBLogin.visibility = View.GONE
-                        if (Prefs.getBoolean(FIRST_LAUNCH, true)) {
-                            val intent = Intent(this@LoginActivity, Intro2Activity::class.java)
-                            startActivity(intent)
-                        } else {
-                            Prefs.putBoolean(FIRST_LAUNCH, false)
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            startActivity(intent)
-                        }
+                        loginViewModel.getUser("Bearer "+ result.token)
+                        observeDataUser()
                     }
 
                     override fun onError(code: String?, error: String?) {

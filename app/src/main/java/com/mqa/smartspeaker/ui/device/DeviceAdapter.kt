@@ -57,39 +57,11 @@ class DeviceAdapter(
                 )
                 holder.itemView.setOnClickListener {
                     val intent = Intent(it.context, LampActivity::class.java)
-                    intent.putExtra("name", data[holder.adapterPosition].name)
+                    intent.putExtra("name", data[holder.bindingAdapterPosition].name)
                     it.context.startActivity(intent)
-                    Prefs.putString(DEVICE_ID, data[holder.adapterPosition].devId)
+                    Prefs.putString(DEVICE_ID, data[holder.bindingAdapterPosition].devId)
                 }
 
-                holder.switch.setOnCheckedChangeListener { buttonView, isChecked ->
-                    val lightDevice: ITuyaLightDevice? =
-                        TuyaLightDevice(data[holder.adapterPosition].devId)
-
-                    if (isChecked) {
-                        lightDevice?.powerSwitch(true, object : IResultCallback {
-                            override fun onError(code: String, error: String) {
-                                Log.i("test_light", "powerSwitch onError:$code$error")
-                            }
-
-                            override fun onSuccess() {
-                                Log.i("test_light", "powerSwitch onSuccess:")
-                                holder.tvStatus.text = "ON"
-                            }
-                        })
-                    } else {
-                        lightDevice?.powerSwitch(false, object : IResultCallback {
-                            override fun onError(code: String, error: String) {
-                                Log.i("test_light", "powerSwitch onError:$code$error")
-                            }
-
-                            override fun onSuccess() {
-                                Log.i("test_light", "powerSwitch onSuccess:")
-                                holder.tvStatus.text = "OFF"
-                            }
-                        })
-                    }
-                }
                 return holder
             }
             ITEM_FOOTER -> {
@@ -100,7 +72,6 @@ class DeviceAdapter(
                 holder.itemView.setOnClickListener {
 
                     val intent = Intent(it.context, PairingActivity::class.java)
-//                    intent.putExtra("deviceId", data[holder.adapterPosition].devId)
                     it.context.startActivity(intent)
                 }
                 return holder
@@ -124,15 +95,13 @@ class DeviceAdapter(
             holder.tvDeviceName.text = bean.name
             holder.tvImage.setImageResource(R.drawable.lamp_icon)
 
-//            holder.switch.isChecked = bean.isOnline
             val lightDevice: ITuyaLightDevice? =
                 TuyaLightDevice(bean.devId)
-//            holder.switch.isChecked = true
+
             if (bean.isOnline) {
                 var status = lightDevice?.lightDataPoint?.powerSwitch
                 holder.tvStatus.text =
                                 holder.itemView.context.getString(if (status == true) R.string.device_mgt_online else R.string.device_mgt_offline)
-                holder.switch.isChecked = status!!
                 holder.pbDev.visibility = GONE
             } else {
                 holder.pbDev.visibility = GONE
@@ -148,7 +117,6 @@ class DeviceAdapter(
         val tvStatus: TextView = itemView.findViewById(R.id.TV_on_off)
         val tvDeviceName: TextView = itemView.findViewById(R.id.TV_device_name)
         val tvImage: ImageView = itemView.findViewById(R.id.IV_device_type)
-        val switch: Switch = itemView.findViewById(R.id.switch_on_off)
         val pbDev: ProgressBar = itemView.findViewById(R.id.PB_list_dev)
     }
 

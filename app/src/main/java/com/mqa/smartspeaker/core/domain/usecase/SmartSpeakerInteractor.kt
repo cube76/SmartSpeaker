@@ -6,19 +6,20 @@ import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
 import com.mqa.smartspeaker.core.domain.repository.ISmartSpeakerRepository
 import javax.inject.Inject
 
-class SmartSpeakerInteractor @Inject constructor(private val tourismRepository: ISmartSpeakerRepository):
+class SmartSpeakerInteractor @Inject constructor(private val ssRepository: ISmartSpeakerRepository):
     SmartSpeakerUseCase {
 
-//    override fun getAllTourism() = tourismRepository.getAllTourism()
+//    override fun getAllTourism() = ssRepository.getAllTourism()
 
-    override suspend fun postRegister(registerRequest: RegisterRequest) = tourismRepository.postRegister(registerRequest)
-    override suspend fun getVerifyEmail(email:String,verificationCode: Int) = tourismRepository.getVerifyEmail(email,verificationCode)
-    override suspend fun getLogin(loginRequest: LoginRequest) = tourismRepository.getLogin(loginRequest)
-    override suspend fun postForgetPassword(email: RecoveryPasswordRequest) = tourismRepository.postForgetPassword(email)
-    override suspend fun postCheckForgetPasswordCode(recoveryPasswordRequest: RecoveryPasswordRequest) = tourismRepository.postCheckForgetPasswordCode(recoveryPasswordRequest)
-    override suspend fun postRecoveryPassword(recoveryPasswordRequest: RecoveryPasswordRequest) = tourismRepository.postRecoveryPassword(recoveryPasswordRequest)
-//    override fun getFavoriteTourism() = tourismRepository.getFavoriteTourism()
+    override suspend fun postRegister(registerRequest: RegisterRequest) = ssRepository.postRegister(registerRequest)
+    override suspend fun getVerifyEmail(email:String,verificationCode: Int) = ssRepository.getVerifyEmail(email,verificationCode)
+    override suspend fun getUser(authHeader:String) = ssRepository.getUser(authHeader)
+    override suspend fun getLogin(loginRequest: LoginRequest) = ssRepository.getLogin(loginRequest)
+    override suspend fun postForgetPassword(email: RecoveryPasswordRequest) = ssRepository.postForgetPassword(email)
+    override suspend fun postCheckForgetPasswordCode(recoveryPasswordRequest: RecoveryPasswordRequest) = ssRepository.postCheckForgetPasswordCode(recoveryPasswordRequest)
+    override suspend fun postRecoveryPassword(recoveryPasswordRequest: RecoveryPasswordRequest) = ssRepository.postRecoveryPassword(recoveryPasswordRequest)
+//    override fun getFavoriteTourism() = ssRepository.getFavoriteTourism()
 //
-//    override fun setFavoriteTourism(tourism: Tourism, state: Boolean) = tourismRepository.setFavoriteTourism(tourism, state)
+//    override fun setFavoriteTourism(tourism: Tourism, state: Boolean) = ssRepository.setFavoriteTourism(tourism, state)
 
 }

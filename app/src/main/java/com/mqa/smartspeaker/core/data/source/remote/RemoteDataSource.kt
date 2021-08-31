@@ -37,6 +37,27 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getUser(authHeader:String): Flow<ApiResponse<User?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getUser(authHeader)
+                Log.e("respon",""+response.body()?.user)
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegularResponse>() {}.type
+                    var errorResponse: RegularResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun postRegister(registerRequest: RegisterRequest): Flow<ApiResponse<RegisterResponse?>> {
         //get data from remote api
         return flow {

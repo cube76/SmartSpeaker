@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.FragmentTuyaPairing1Binding
 import com.mqa.smartspeaker.databinding.FragmentTuyaPairing3Binding
+import com.mqa.smartspeaker.ui.register.RegisterActivity.Companion.HOME_ID
 import com.pixplicity.easyprefs.library.Prefs
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.builder.ActivatorBuilder
@@ -21,6 +22,7 @@ import com.tuya.smart.sdk.enums.ActivatorModelEnum
 class TuyaPairing3Fragment : Fragment() {
     companion object {
         const val TAG = "DeviceConfigEZ"
+        const val SUCCESS_LAMP = "success_lamp"
     }
     private var _binding: FragmentTuyaPairing3Binding? = null
     private val binding get() = _binding!!
@@ -34,7 +36,7 @@ class TuyaPairing3Fragment : Fragment() {
     ): View? {
         _binding = FragmentTuyaPairing3Binding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        TuyaHomeSdk.getActivatorInstance().getActivatorToken(38246244,
+        TuyaHomeSdk.getActivatorInstance().getActivatorToken(Prefs.getString(HOME_ID, "").toLong(),
             object : ITuyaActivatorGetToken {
                 override fun onSuccess(token: String) {
                     // Start network configuration -- EZ mode
@@ -63,6 +65,7 @@ class TuyaPairing3Fragment : Fragment() {
 
                                 Prefs.remove("ssid")
                                 Prefs.remove("password_wifi")
+                                Prefs.putBoolean(SUCCESS_LAMP, true)
 
                                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
                                 transaction.replace(R.id.fragmentContainerPairing, TuyaPairing4Fragment())
@@ -81,6 +84,7 @@ class TuyaPairing3Fragment : Fragment() {
                                     Toast.LENGTH_LONG
                                 ).show()
                                 Log.e(TAG, "Activate error-->$errorMsg")
+                                Prefs.putBoolean(SUCCESS_LAMP, false)
                             }
                         }
                         )
@@ -92,7 +96,9 @@ class TuyaPairing3Fragment : Fragment() {
                     mTuyaActivator.start()
                 }
 
-                override fun onFailure(s: String, s1: String) {}
+                override fun onFailure(s: String, s1: String) {
+                    Prefs.putBoolean(SUCCESS_LAMP, false)
+                }
             })
         return binding.root
     }

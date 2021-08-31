@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.utils.SpacesItemDecoration
 import com.mqa.smartspeaker.databinding.FragmentDeviceBinding
+import com.mqa.smartspeaker.ui.register.RegisterActivity
+import com.pixplicity.easyprefs.library.Prefs
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import com.tuya.smart.home.sdk.bean.HomeBean
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback
@@ -47,7 +49,7 @@ class DeviceFragment : Fragment() {
     fun showList(){
         var deviceList = arrayListOf<DeviceBean>()
         deviceList.clear()
-        TuyaHomeSdk.newHomeInstance(38246244).getHomeDetail(object : ITuyaHomeResultCallback {
+        TuyaHomeSdk.newHomeInstance(Prefs.getString(RegisterActivity.HOME_ID, "").toLong()).getHomeDetail(object : ITuyaHomeResultCallback {
             override fun onSuccess(bean: HomeBean?) {
                 binding.refreshDevice.isRefreshing = false
                 bean?.let { it ->

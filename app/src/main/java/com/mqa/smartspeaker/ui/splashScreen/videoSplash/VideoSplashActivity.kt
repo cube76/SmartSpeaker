@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.media.session.MediaSessionCompat
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.VideoView
@@ -25,42 +26,44 @@ class VideoSplashActivity : AppCompatActivity() {
         binding = ActivityVideoSplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (Prefs.getBoolean(FIRST_LAUNCH, false)) {
+        if (!Prefs.getBoolean(FIRST_LAUNCH, false)) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+        }else {
+
+            binding.andExoPlayerView.setSource("android.resource://" + packageName + "/" + R.raw.vertikal)
+
+            binding.IVMaximize.setOnClickListener {
+                binding.andExoPlayerView.layoutParams.height =
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                binding.andExoPlayerView.requestLayout()
+                binding.IVMaximize.visibility = View.GONE
+                binding.IVMinimize.visibility = View.VISIBLE
+                binding.btnSkip.visibility = View.GONE
+                binding.textView19.visibility = View.GONE
+                binding.textView20.visibility = View.GONE
+                binding.imageView11.visibility = View.GONE
+            }
+
+            binding.IVMinimize.setOnClickListener {
+                binding.andExoPlayerView.layoutParams.height =
+                    resources.getDimensionPixelSize(R.dimen.video_dip)
+                binding.andExoPlayerView.requestLayout()
+                binding.IVMaximize.visibility = View.VISIBLE
+                binding.IVMinimize.visibility = View.GONE
+                binding.btnSkip.visibility = View.VISIBLE
+                binding.textView19.visibility = View.VISIBLE
+                binding.textView20.visibility = View.VISIBLE
+                binding.imageView11.visibility = View.VISIBLE
+            }
+
+            binding.btnSkip.setOnClickListener {
+                val intent = Intent(this@VideoSplashActivity, LoginActivity::class.java)
+                startActivity(intent)
+
+                binding.andExoPlayerView.stopPlayer()
+            }
         }
-
-        binding.andExoPlayerView.setSource("android.resource://"+ packageName +"/"+ R.raw.vertikal)
-
-        binding.IVMaximize.setOnClickListener {
-            binding.andExoPlayerView.layoutParams.height = LinearLayout.LayoutParams.MATCH_PARENT
-            binding.andExoPlayerView.requestLayout()
-            binding.IVMaximize.visibility = View.GONE
-            binding.IVMinimize.visibility = View.VISIBLE
-            binding.btnSkip.visibility = View.GONE
-            binding.textView19.visibility = View.GONE
-            binding.textView20.visibility = View.GONE
-            binding.imageView11.visibility = View.GONE
-        }
-
-        binding.IVMinimize.setOnClickListener {
-            binding.andExoPlayerView.layoutParams.height = resources.getDimensionPixelSize(R.dimen.video_dip)
-            binding.andExoPlayerView.requestLayout()
-            binding.IVMaximize.visibility = View.VISIBLE
-            binding.IVMinimize.visibility = View.GONE
-            binding.btnSkip.visibility = View.VISIBLE
-            binding.textView19.visibility = View.VISIBLE
-            binding.textView20.visibility = View.VISIBLE
-            binding.imageView11.visibility = View.VISIBLE
-        }
-
-        binding.btnSkip.setOnClickListener {
-            val intent = Intent(this@VideoSplashActivity, LoginActivity::class.java)
-            startActivity(intent)
-
-            binding.andExoPlayerView.stopPlayer()
-        }
-
 //        val videoview = findViewById<View>(R.id.videoView2) as VideoView
 //        val uri = Uri.parse("android.resource://" + packageName + "/" + R.raw.vertikal)
 //        videoview.setVideoURI(uri)

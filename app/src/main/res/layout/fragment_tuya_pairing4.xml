@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.206" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/TV_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView15" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/TV_subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -47,7 +47,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_title" />
 
     <Button
         android:id="@+id/btn_back_home"
@@ -59,6 +59,6 @@
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView16"
-        app:layout_constraintStart_toStartOf="@+id/textView16" />
+        app:layout_constraintEnd_toEndOf="@+id/TV_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/TV_subtitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

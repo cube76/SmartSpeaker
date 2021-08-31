@@ -5,14 +5,14 @@ import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequ
 import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiService {
     @GET("list")
     suspend fun getList(): ListTourismResponse
+
+    @GET("api/user")
+    suspend fun getUser(@Header("Authorization") authHeader:String): Response<User>
 
     @POST("api/register")
     suspend fun postRegister(@Body requestBody: RegisterRequest): Response<RegisterResponse>

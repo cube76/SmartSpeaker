@@ -18,6 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/NoActionBar"
         tools:replace="android:allowBackup,android:supportsRtl">
+        <activity android:name=".ui.alarmPersonal.AlarmPersonalActivity"></activity>
+        <activity android:name=".ui.changeProfile.ChangeProfileActivity" />
 
         <meta-data
             android:name="TUYA_SMART_APPKEY"
@@ -42,8 +44,7 @@
         <activity android:name=".ui.forgetPassword.inputCode.InputCodeActivity" />
         <activity android:name=".ui.forgetPassword.inputEmail.InputEmailActivity" />
         <activity android:name=".ui.forgetPassword.renewPassword.RenewPasswordActivity" />
-        <activity android:name=".ui.pairing.PairingActivity" >
-        </activity>
+        <activity android:name=".ui.pairing.PairingActivity" />
         <activity android:name=".ui.intro.Intro2Activity" /> <!-- <activity android:name=".ui.intro.IntroActivity"> -->
         <!-- </activity> -->
         <activity android:name=".ui.register.RegisterActivity" />
