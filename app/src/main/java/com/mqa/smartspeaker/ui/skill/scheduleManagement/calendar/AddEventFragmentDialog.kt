@@ -1,16 +1,11 @@
-package com.mqa.smartspeaker.ui.scheduleManagement.calendar
+package com.mqa.smartspeaker.ui.skill.scheduleManagement.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.mqa.smartspeaker.core.domain.model.Event
 import com.mqa.smartspeaker.databinding.FrameAddScheduleBinding
-import com.pixplicity.easyprefs.library.Prefs
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddEventFragmentDialog : BottomSheetDialogFragment(){

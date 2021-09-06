@@ -1,4 +1,4 @@
-package com.mqa.smartspeaker.ui.alarmPersonal.recordAlarm
+package com.mqa.smartspeaker.ui.skill.alarmPersonal.recordAlarm
 
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle

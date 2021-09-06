@@ -1,14 +1,11 @@
-package com.mqa.smartspeaker.ui.alarmPersonal
+package com.mqa.smartspeaker.ui.skill.alarmPersonal
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View.VISIBLE
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.ActivityAlarmPersonalBinding
-import com.mqa.smartspeaker.databinding.ActivityPairingBinding
-import com.mqa.smartspeaker.ui.alarmPersonal.chooseType.ChooseTypeAlarmPersonalFragment
-import com.mqa.smartspeaker.ui.alarmPersonal.recordAlarm.RecordAlarmPersonalFragment
-import com.mqa.smartspeaker.ui.pairing.smartSpeaker.SmartSpeakerPairingFragment
+import com.mqa.smartspeaker.ui.skill.alarmPersonal.recordAlarm.RecordAlarmPersonalFragment
 
 class AlarmPersonalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAlarmPersonalBinding

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.alarmPersonal.textAlarm.AlarmPersonalAddTextFragment">
+    tools:context=".ui.skill.alarmPersonal.textAlarm.AlarmPersonalAddTextFragment">
 
     <TextView
         android:id="@+id/textView48"

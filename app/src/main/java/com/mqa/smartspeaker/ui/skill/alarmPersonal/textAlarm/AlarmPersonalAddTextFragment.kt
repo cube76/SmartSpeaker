@@ -1,4 +1,4 @@
-package com.mqa.smartspeaker.ui.alarmPersonal.textAlarm
+package com.mqa.smartspeaker.ui.skill.alarmPersonal.textAlarm
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

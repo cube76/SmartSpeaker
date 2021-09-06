@@ -8,7 +8,7 @@
     android:background="@drawable/background_dialog_transparent">
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/IV_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -29,10 +29,10 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/TV_success_dialog"
-        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="@+id/IV_icon"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        app:layout_constraintStart_toStartOf="@+id/IV_icon"
+        app:layout_constraintTop_toBottomOf="@+id/IV_icon" />
 
     <TextView
         android:id="@+id/TV_success_dialog"

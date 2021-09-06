@@ -1,4 +1,4 @@
-package com.mqa.smartspeaker.ui.scheduleManagement.calendar
+package com.mqa.smartspeaker.ui.skill.scheduleManagement.calendar
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

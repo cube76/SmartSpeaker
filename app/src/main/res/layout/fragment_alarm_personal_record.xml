@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.alarmPersonal.recordAlarm.RecordAlarmPersonalFragment">
+    tools:context=".ui.skill.alarmPersonal.recordAlarm.RecordAlarmPersonalFragment">
 
     <TextView
         android:id="@+id/TV_title_alarm"

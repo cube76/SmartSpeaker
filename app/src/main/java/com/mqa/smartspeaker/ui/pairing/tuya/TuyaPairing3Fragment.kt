@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.FragmentTuyaPairing1Binding
 import com.mqa.smartspeaker.databinding.FragmentTuyaPairing3Binding
+import com.mqa.smartspeaker.ui.dialog.FailedDialogTuyaPairing
 import com.mqa.smartspeaker.ui.register.RegisterActivity.Companion.HOME_ID
 import com.pixplicity.easyprefs.library.Prefs
 import com.tuya.smart.home.sdk.TuyaHomeSdk
@@ -85,6 +86,7 @@ class TuyaPairing3Fragment : Fragment() {
                                 ).show()
                                 Log.e(TAG, "Activate error-->$errorMsg")
                                 Prefs.putBoolean(SUCCESS_LAMP, false)
+                                FailedDialogTuyaPairing(requireActivity()).show()
                             }
                         }
                         )
@@ -98,6 +100,7 @@ class TuyaPairing3Fragment : Fragment() {
 
                 override fun onFailure(s: String, s1: String) {
                     Prefs.putBoolean(SUCCESS_LAMP, false)
+                    FailedDialogTuyaPairing(requireActivity()).show()
                 }
             })
         return binding.root

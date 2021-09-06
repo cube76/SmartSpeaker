@@ -1,12 +1,10 @@
-package com.mqa.smartspeaker.ui.scheduleManagement
+package com.mqa.smartspeaker.ui.skill.scheduleManagement
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mqa.smartspeaker.R
-import com.mqa.smartspeaker.databinding.ActivityConnectSmartSpeakerBinding
 import com.mqa.smartspeaker.databinding.ActivityScheduleManagementBinding
-import com.mqa.smartspeaker.ui.connectSmartSpeaker.scanWifi.ScanWifiFragment
-import com.mqa.smartspeaker.ui.scheduleManagement.calendar.CalendarFragment
+import com.mqa.smartspeaker.ui.skill.scheduleManagement.calendar.CalendarFragment
 
 class ScheduleManagementActivity : AppCompatActivity() {
 

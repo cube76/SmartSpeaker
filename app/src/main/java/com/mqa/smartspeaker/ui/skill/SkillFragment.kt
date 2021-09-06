@@ -6,12 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.mqa.smartspeaker.MainActivity
-import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.FragmentSkillBinding
-import com.mqa.smartspeaker.databinding.FragmentWarmBinding
-import com.mqa.smartspeaker.ui.alarmPersonal.AlarmPersonalActivity
-import com.mqa.smartspeaker.ui.scheduleManagement.ScheduleManagementActivity
+import com.mqa.smartspeaker.ui.skill.alarmPersonal.AlarmPersonalActivity
+import com.mqa.smartspeaker.ui.skill.scheduleManagement.ScheduleManagementActivity
 
 class SkillFragment : Fragment() {
 

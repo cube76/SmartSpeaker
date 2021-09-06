@@ -9,8 +9,6 @@ import androidx.activity.viewModels
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
 import com.mqa.smartspeaker.databinding.ActivityChangePasswordBinding
-import com.mqa.smartspeaker.databinding.ActivityLampBinding
-import com.mqa.smartspeaker.ui.alarmPersonal.AlarmPersonalActivity
 import com.mqa.smartspeaker.ui.forgetPassword.ForgetPasswordActivity
 import com.mqa.smartspeaker.ui.forgetPassword.inputCode.InputCodeActivity
 import com.mqa.smartspeaker.ui.forgetPassword.inputEmail.InputEmailActivity
