@@ -3,6 +3,7 @@ package com.mqa.smartspeaker.core.data.source.remote.network
 import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
 import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
 import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -13,6 +14,9 @@ interface ApiService {
 
     @GET("api/user")
     suspend fun getUser(@Header("Authorization") authHeader:String): Response<User>
+
+    @POST("api/updateProfile")
+    suspend fun postUpdateProfile(@Header("Authorization") authHeader:String, @Body requestBody: UpdateProfileRequest): Response<RegularResponse>
 
     @POST("api/register")
     suspend fun postRegister(@Body requestBody: RegisterRequest): Response<RegisterResponse>

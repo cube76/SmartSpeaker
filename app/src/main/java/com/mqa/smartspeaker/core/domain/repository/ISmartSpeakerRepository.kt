@@ -4,6 +4,7 @@ import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
 import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
 import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.*
 import kotlinx.coroutines.flow.Flow
 
@@ -12,6 +13,7 @@ interface ISmartSpeakerRepository {
 //    fun getAllTourism(): Flow<Resource<List<Tourism>>>
 
     suspend fun postRegister(registerRequest: RegisterRequest): Flow<Resource<RegisterResponse>>
+    suspend fun postUpdateProfile(authHeader:String,updateProfileRequest: UpdateProfileRequest): Flow<Resource<RegularResponse>>
 
 //    fun getFavoriteTourism(): Flow<List<Tourism>>
 //

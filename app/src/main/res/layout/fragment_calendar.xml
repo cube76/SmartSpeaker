@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.scheduleManagement.calendar.CalendarFragment">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabCustomSize="34dp"
+        android:backgroundTint="@color/black_secondary"
+        app:borderWidth="0dp"
+        android:src="@drawable/ic_baseline_add_yellow"
+        app:layout_constraintEnd_toEndOf="@+id/nestedScrollView"
+        app:layout_constraintTop_toTopOf="@+id/nestedScrollView" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/TV_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Juni"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/TV_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="2021"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/TV_month"
+                    app:layout_constraintStart_toEndOf="@+id/TV_month"
+                    app:layout_constraintTop_toTopOf="@+id/TV_month" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <include
+                layout="@layout/calendar_header"/>
+
+            <com.kizitonwose.calendarview.CalendarView
+                android:id="@+id/calendar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cv_inDateStyle="allMonths"
+                app:cv_outDateStyle="endOfRow"
+                app:cv_dayViewResource="@layout/calendar_day"
+                app:cv_orientation="horizontal"
+                app:cv_scrollMode="paged" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/btn_prev_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/imageView35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_navigate_before_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:text="Sebelum" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_next_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/white"
+                        android:text="Selanjutnya" />
+
+                    <ImageView
+                        android:id="@+id/imageView36"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_baseline_navigate_next_24" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/exThreeRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

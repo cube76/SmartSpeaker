@@ -48,6 +48,5 @@
     <string name="alarm_personal">Alarm Personal</string>
     <string name="kamu_bisa_mengatur_alarm_dengan_fitur_personalisasi_dengan_merekam_suara_dan_membacakan_teks_melalui_smart_speaker_mu">Kamu bisa mengatur alarm dengan fitur personalisasi dengan merekam suara dan membacakan teks melalui Smart Speaker-mu</string>
     <string name="rekaman_suara">Rekaman Suara</string>
-    <string name="default">Default</string>
     <string name="default_skill">Default</string>
 </resources>

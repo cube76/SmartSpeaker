@@ -1,5 +1,6 @@
 package com.mqa.smartspeaker.core.di
 
+import com.mqa.smartspeaker.BuildConfig
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -27,7 +28,7 @@ class NetworkModule {
     @Provides
     fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://gateway.infidea.id/")
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

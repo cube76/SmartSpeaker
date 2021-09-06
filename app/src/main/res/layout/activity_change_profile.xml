@@ -7,7 +7,7 @@
     tools:context=".ui.changeProfile.ChangeProfileActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/IV_profile_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
@@ -23,7 +23,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="Profile Saya"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include6" />
@@ -38,22 +41,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="match_parent"
+        android:id="@+id/LL_edit_photo"
+        android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image"
-        tools:layout_editor_absoluteX="1dp"></LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IV_profile_image">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/ic_baseline_add_a_photo_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubah Foto"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_save_profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/btn_yellow"
-        android:text="Button"
+        android:text="Simpan"
+        android:textAllCaps="false"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,19 +87,96 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="TextView"
+        android:text="Nama Depan"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+        app:layout_constraintTop_toBottomOf="@+id/LL_edit_photo" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
+        android:id="@+id/TV_first_name"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="4dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
-        app:layout_constraintStart_toStartOf="@+id/textView47"
+        app:layout_constraintEnd_toStartOf="@+id/TV_last_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView47" />
+
+    <EditText
+        android:id="@+id/TV_last_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/TV_first_name"
+        app:layout_constraintTop_toTopOf="@+id/TV_first_name" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Belakang"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/TV_last_name"
+        app:layout_constraintStart_toStartOf="@+id/TV_last_name"
+        app:layout_constraintTop_toTopOf="@+id/textView47" />
+
+    <EditText
+        android:id="@+id/TV_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        app:layout_constraintEnd_toEndOf="@+id/TV_last_name"
+        app:layout_constraintStart_toStartOf="@+id/TV_first_name"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Email"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/TV_first_name"
+        app:layout_constraintTop_toBottomOf="@+id/TV_first_name" />
+
+    <ProgressBar
+        android:id="@+id/PB_profile"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include6"
+        app:layout_constraintVertical_bias="0.576" />
+
+    <TextView
+        android:id="@+id/TV_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textColor="@color/yellow"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/TV_email"
+        app:layout_constraintTop_toBottomOf="@+id/TV_email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

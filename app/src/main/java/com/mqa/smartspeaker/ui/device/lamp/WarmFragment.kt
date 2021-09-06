@@ -44,6 +44,7 @@ class WarmFragment : Fragment() {
     ): View? {
         _binding = FragmentWarmBinding.inflate(inflater, container, false)
 
+        Log.e("deviceid", "$deviceId")
         val callback = object : IResultCallback {
             override fun onError(code: kotlin.String, error: kotlin.String) {
                 Log.i("test_light", "workMode onError:$code$error")

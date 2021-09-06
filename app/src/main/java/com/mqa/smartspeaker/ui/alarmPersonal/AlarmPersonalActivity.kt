@@ -7,6 +7,7 @@ import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.ActivityAlarmPersonalBinding
 import com.mqa.smartspeaker.databinding.ActivityPairingBinding
 import com.mqa.smartspeaker.ui.alarmPersonal.chooseType.ChooseTypeAlarmPersonalFragment
+import com.mqa.smartspeaker.ui.alarmPersonal.recordAlarm.RecordAlarmPersonalFragment
 import com.mqa.smartspeaker.ui.pairing.smartSpeaker.SmartSpeakerPairingFragment
 
 class AlarmPersonalActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class AlarmPersonalActivity : AppCompatActivity() {
         binding = ActivityAlarmPersonalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fragment: ChooseTypeAlarmPersonalFragment = ChooseTypeAlarmPersonalFragment()
+        val fragment: RecordAlarmPersonalFragment = RecordAlarmPersonalFragment()
         supportFragmentManager.beginTransaction().add(R.id.container_alarm_personal, fragment)
             .commit()
 

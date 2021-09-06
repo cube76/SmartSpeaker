@@ -6,6 +6,7 @@ import com.mqa.smartspeaker.core.data.source.remote.network.ApiResponse
 import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
 import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
 import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.*
 import com.mqa.smartspeaker.core.domain.repository.ISmartSpeakerRepository
 import com.mqa.smartspeaker.core.utils.AppExecutors
@@ -44,6 +45,18 @@ class SmartSpeakerRepository @Inject constructor(
 
     override suspend fun postRegister(registerRequest: RegisterRequest): Flow<Resource<RegisterResponse>> {
         return remoteDataSource.postRegister(registerRequest).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun postUpdateProfile(authHeader:String, updateProfileRequest: UpdateProfileRequest): Flow<Resource<RegularResponse>> {
+        return remoteDataSource.postUpdateProfile(authHeader, updateProfileRequest).map {
             when (it) {
                 is ApiResponse.Success -> {
                     Resource.Success(it.data!!)

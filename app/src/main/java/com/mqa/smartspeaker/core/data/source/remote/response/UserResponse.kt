@@ -23,4 +23,7 @@ data class UserResponse(
 
     @field:SerializedName("is_verified")
     val is_verified: Int,
+
+    @field:SerializedName("profile_image")
+    val profile_image: String,
 )
