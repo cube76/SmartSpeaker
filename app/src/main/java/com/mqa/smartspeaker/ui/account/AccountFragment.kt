@@ -19,13 +19,12 @@ import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.response.LoginResponse
 import com.mqa.smartspeaker.databinding.FragmentAccountBinding
 import com.mqa.smartspeaker.databinding.FragmentDeviceBinding
+import com.mqa.smartspeaker.ui.changePassword.ChangePasswordActivity
 import com.mqa.smartspeaker.ui.changeProfile.ChangeProfileActivity
+import com.mqa.smartspeaker.ui.dialog.SuccessDialogForgetPass
 import com.mqa.smartspeaker.ui.intro.Intro2Activity
 import com.mqa.smartspeaker.ui.login.LoginActivity
 import com.mqa.smartspeaker.ui.login.LoginActivity.Companion.EMAIL
-import com.mqa.smartspeaker.ui.login.LoginActivity.Companion.FIRST_NAME
-import com.mqa.smartspeaker.ui.login.LoginActivity.Companion.LAST_NAME
-import com.mqa.smartspeaker.ui.login.LoginActivity.Companion.PROFILE_IMAGE
 import com.mqa.smartspeaker.ui.login.LoginViewModel
 import com.mqa.smartspeaker.ui.register.RegisterActivity
 import com.pixplicity.easyprefs.library.Prefs
@@ -49,15 +48,9 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
-
-         binding.btnLogout.setOnClickListener {
-             Prefs.clear()
-             activity?.finish()
-         }
-
         accountViewModel.getUser("Bearer "+Prefs.getString(LoginActivity.TOKEN, ""))
         observeDataUser()
-
+        
         binding.groupEdit.setAllOnClickListener(View.OnClickListener {
             val intent = Intent(activity, ChangeProfileActivity::class.java)
             intent.putExtra("email", email)
@@ -68,6 +61,20 @@ class AccountFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.LLChangePasswrod.setOnClickListener {
+            val intent = Intent(activity, ChangePasswordActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnLogout.setOnClickListener {
+            Prefs.clear()
+            activity?.finish()
+        }
     }
 
     fun Group.setAllOnClickListener(listener: View.OnClickListener?) {

@@ -10,6 +10,7 @@ import com.mqa.smartspeaker.MainActivity
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.databinding.FragmentSkillBinding
 import com.mqa.smartspeaker.databinding.FragmentWarmBinding
+import com.mqa.smartspeaker.ui.alarmPersonal.AlarmPersonalActivity
 import com.mqa.smartspeaker.ui.scheduleManagement.ScheduleManagementActivity
 
 class SkillFragment : Fragment() {
@@ -20,11 +21,16 @@ class SkillFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSkillBinding.inflate(inflater, container, false)
 
         binding.pengelolaanJadwal.setOnClickListener{
             val intent = Intent(activity, ScheduleManagementActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.alarmPersonal.setOnClickListener {
+            val intent = Intent(activity, AlarmPersonalActivity::class.java)
             startActivity(intent)
         }
 

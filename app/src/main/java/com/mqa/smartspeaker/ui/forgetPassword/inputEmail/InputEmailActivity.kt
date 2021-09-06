@@ -11,6 +11,7 @@ import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequ
 import com.mqa.smartspeaker.databinding.ActivityInputEmailBinding
 import com.mqa.smartspeaker.ui.forgetPassword.ForgetPasswordActivity.Companion.EMAIL
 import com.mqa.smartspeaker.ui.forgetPassword.inputCode.InputCodeActivity
+import com.pixplicity.easyprefs.library.Prefs
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -19,6 +20,12 @@ class InputEmailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInputEmailBinding
     private val inputEmailViewModel: InputEmailViewModel by viewModels()
+
+    companion object {
+        const val PASS = "change_pass"
+        const val FORGET_PASS = 101
+        const val CHANGE_PASS = 102
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +78,7 @@ class InputEmailActivity : AppCompatActivity() {
 
     fun next(){
         val intent = Intent(this, InputCodeActivity::class.java)
+        Prefs.putInt(PASS, FORGET_PASS)
         intent.putExtra(EMAIL, binding.ETEmailForget.text.toString())
         startActivity(intent)
     }

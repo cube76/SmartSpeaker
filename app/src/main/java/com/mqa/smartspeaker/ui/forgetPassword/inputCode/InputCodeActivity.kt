@@ -16,6 +16,9 @@ import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequ
 import com.mqa.smartspeaker.databinding.ActivityInputCodeBinding
 import com.mqa.smartspeaker.ui.forgetPassword.ForgetPasswordActivity.Companion.CODE
 import com.mqa.smartspeaker.ui.forgetPassword.ForgetPasswordActivity.Companion.EMAIL
+import com.mqa.smartspeaker.ui.forgetPassword.inputEmail.InputEmailActivity.Companion.CHANGE_PASS
+import com.mqa.smartspeaker.ui.forgetPassword.inputEmail.InputEmailActivity.Companion.FORGET_PASS
+import com.mqa.smartspeaker.ui.forgetPassword.inputEmail.InputEmailActivity.Companion.PASS
 import com.mqa.smartspeaker.ui.forgetPassword.renewPassword.RenewPasswordActivity
 import com.pixplicity.easyprefs.library.Prefs
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +38,11 @@ class InputCodeActivity : AppCompatActivity() {
         binding.TVResend.isClickable = false
         email = intent.getStringExtra(EMAIL).toString()
         val otpView = binding.otpViewForget
+        val from = Prefs.getInt(PASS, 0)
+
+        if (from == CHANGE_PASS){
+            binding.include4.TVTitle.text == "Ubah kata sandi"
+        }
 
         object : CountDownTimer(60000, 1000) {
 

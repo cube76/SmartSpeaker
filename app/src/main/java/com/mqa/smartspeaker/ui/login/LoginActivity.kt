@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.mqa.smartspeaker.BuildConfig
 import com.mqa.smartspeaker.MainActivity
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
@@ -36,10 +37,7 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         const val TOKEN = "token"
         const val FIRST_LAUNCH = "firstLaunch"
-        const val EMAIL = "email"
-        const val FIRST_NAME = "firstName"
-        const val LAST_NAME = "lastName"
-        const val PROFILE_IMAGE = "profileImage"
+        const val EMAIL = "email_prefs"
         const val USER_ID = "userId"
     }
 
@@ -127,6 +125,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun verification(result: LoginResponse) {
         Prefs.putString(TOKEN, result.token)
+//        Log.e("emailtuya", BuildConfig.EMAIL_TUYA)
 
         TuyaHomeSdk.getUserInstance()
             .loginWithEmail(
@@ -140,13 +139,15 @@ class LoginActivity : AppCompatActivity() {
                         observeDataUser()
                     }
 
-                    override fun onError(code: String?, error: String?) {
+                    override fun onError(code: String?, error: String) {
                         binding.PBLogin.visibility = View.GONE
                         Toast.makeText(
                             this@LoginActivity,
                             "login tuya error->$error",
                             Toast.LENGTH_LONG
                         ).show()
+
+                        showError(error)
                     }
                 })
 
@@ -174,6 +175,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.e("result1", result?.user.toString())
                         Prefs.putString(HOME_ID, result?.user?.homeId)
                         Prefs.putInt(USER_ID, result?.user?.id!!)
+                        Prefs.putString(EMAIL, result.user.email)
                         if (Prefs.getBoolean(FIRST_LAUNCH, false)) {
                             val intent = Intent(this@LoginActivity, Intro2Activity::class.java)
                             startActivity(intent)
