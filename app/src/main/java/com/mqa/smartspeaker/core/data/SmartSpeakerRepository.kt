@@ -3,10 +3,8 @@ package com.mqa.smartspeaker.core.data
 //import com.dicoding.tourismapp.core.data.source.local.LocalDataSource
 import com.mqa.smartspeaker.core.data.source.remote.RemoteDataSource
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiResponse
-import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
-import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.*
 import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
-import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.*
 import com.mqa.smartspeaker.core.domain.repository.ISmartSpeakerRepository
 import com.mqa.smartspeaker.core.utils.AppExecutors
@@ -22,29 +20,44 @@ class SmartSpeakerRepository @Inject constructor(
     private val appExecutors: AppExecutors
 ) : ISmartSpeakerRepository {
 
-//    override fun getAllTourism(): Flow<Resource<List<Tourism>>> =
-//        object : NetworkBoundResource<List<Tourism>, List<TourismResponse>>() {
-//            override fun loadFromDB(): Flow<List<Tourism>> {
-//                return localDataSource.getAllTourism().map {
-//                    DataMapper.mapEntitiesToDomain(it)
-//                }
-//            }
-//
-//            override fun shouldFetch(data: List<Tourism>?): Boolean =
-////                data == null || data.isEmpty()
-//                true // ganti dengan true jika ingin selalu mengambil data dari internet
-//
-//            override suspend fun createCall(): Flow<ApiResponse<List<TourismResponse>>> =
-//                remoteDataSource.getAllTourism()
-//
-//            override suspend fun saveCallResult(data: List<TourismResponse>) {
-//                val tourismList = DataMapper.mapResponsesToEntities(data)
-//                localDataSource.insertTourism(tourismList)
-//            }
-//        }.asFlow()
-
     override suspend fun postRegister(registerRequest: RegisterRequest): Flow<Resource<RegisterResponse>> {
         return remoteDataSource.postRegister(registerRequest).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun getSkillInfoState(authHeader:String, skillId: SkillInfoState): Flow<Resource<SkillInfoStateResponse>> {
+        return remoteDataSource.getSkillInfoState(authHeader, skillId).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun setSkillInfoState(authHeader:String, skill: SetSkillInfo): Flow<Resource<RegularResponse>> {
+        return remoteDataSource.setSkillInfoState(authHeader, skill).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun setSkillFavorite(authHeader:String, skill: SetSkillFavorite): Flow<Resource<RegularResponse>> {
+        return remoteDataSource.setSkillFavorite(authHeader, skill).map {
             when (it) {
                 is ApiResponse.Success -> {
                     Resource.Success(it.data!!)
@@ -81,6 +94,42 @@ class SmartSpeakerRepository @Inject constructor(
 
     override suspend fun getUser(authHeader:String): Flow<Resource<User>> {
         return remoteDataSource.getUser(authHeader).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun getListSkill(authHeader:String): Flow<Resource<List<Skills>>> {
+        return remoteDataSource.getListSkill(authHeader).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun getListSkillFavourite(authHeader:String): Flow<Resource<List<Skills>>> {
+        return remoteDataSource.getListSkillFavourite(authHeader).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
+    override suspend fun getListSkillCategory(authHeader:String, category: String): Flow<Resource<List<Skills>>> {
+        return remoteDataSource.getListSkillCategory(authHeader, category).map {
             when (it) {
                 is ApiResponse.Success -> {
                     Resource.Success(it.data!!)

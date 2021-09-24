@@ -36,6 +36,8 @@ class RegisterActivity : AppCompatActivity() {
     private val registerViewModel: RegisterViewModel by viewModels()
     var email: String = ""
     var homeId: String? = ""
+    var currentDate = ""
+
     companion object {
         const val HOME_ID = "homeId"
     }
@@ -46,6 +48,13 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnRegister.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                val currentDateTime =
+                    LocalDateTime.now()
+                currentDate = currentDateTime.format(
+                    DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
+                )
+            }
             if (!Internet.isOnline(applicationContext)) {
                 Toast.makeText(
                     applicationContext,
@@ -58,66 +67,70 @@ class RegisterActivity : AppCompatActivity() {
                 email = binding.TVEmail.text.toString()
                 val password = binding.TVPassword.text.toString()
                 val passwordConfirmation = binding.TVPasswordConfirmation.text.toString()
-                TuyaHomeSdk.getUserInstance()
-                    .loginWithEmail(86.toString(), "aqubayisi@yahoo.com", "rahasiasaya", object :
-                        ILoginCallback {
-                        override fun onSuccess(user: User?) {
-                            var currentDate = ""
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            val currentDateTime =
-                                LocalDateTime.now()
-                                currentDate= currentDateTime.format(
-                                DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))
-                            }
-                            val homeName = currentDate + ('a'..'z').randomString(6)
-                            Log.e("homeName", currentDate)
-                            TuyaHomeSdk.getHomeManagerInstance().createHome(
-                                homeName,
-                                // Get location by yourself, here just sample as Shanghai's location
-                                120.52,
-                                30.40,
-                                "Indonesia",
-                                arrayListOf(),
-                                object : ITuyaHomeResultCallback {
-                                    override fun onSuccess(bean: HomeBean?) {
-                                        homeId = bean?.homeId.toString()
-                                        Prefs.putString(HOME_ID, homeId)
-                                    }
 
-                                    override fun onError(errorCode: String?, errorMsg: String?) {
-                                        Toast.makeText(
-                                            this@RegisterActivity,
-                                            "Create Home error->$errorMsg",
-                                            Toast.LENGTH_LONG
-                                        ).show()
-                                        Log.e("gagal buat home", "")
-                                    }
-
-                                }
-                            )
-                        }
-
-                        override fun onError(code: String?, error: String?) {
-                            Toast.makeText(
-                                this@RegisterActivity,
-                                "login tuya error->$error",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    })
-
-                val data =
-                    RegisterRequest(
-                        firstName,
-                        lastName,
-                        email,
-                        password,
-                        passwordConfirmation,
-                        Prefs.getString(HOME_ID, "")
-                    )
                 if (binding.CBTnc.isChecked) {
-                    registerViewModel.postRegister(data)
-                    observeData()
+                    binding.PBRegister.visibility = View.VISIBLE
+                    TuyaHomeSdk.getUserInstance()
+                        .loginWithEmail(
+                            86.toString(),
+                            "aqubayisi@yahoo.com",
+                            "rahasiasaya",
+                            object :
+                                ILoginCallback {
+                                override fun onSuccess(user: User?) {
+                                    val homeName = currentDate + ('a'..'z').randomString(6)
+                                    Log.e("homeName", currentDate)
+                                    TuyaHomeSdk.getHomeManagerInstance().createHome(
+                                        homeName,
+                                        // Get location by yourself, here just sample as Shanghai's location
+                                        120.52,
+                                        30.40,
+                                        "Indonesia",
+                                        arrayListOf(),
+                                        object : ITuyaHomeResultCallback {
+                                            override fun onSuccess(bean: HomeBean?) {
+                                                homeId = bean?.homeId.toString()
+                                                Prefs.putString(HOME_ID, homeId)
+
+                                                val data =
+                                                    RegisterRequest(
+                                                        firstName,
+                                                        lastName,
+                                                        email,
+                                                        password,
+                                                        passwordConfirmation,
+                                                        Prefs.getString(HOME_ID, "")
+                                                    )
+
+                                                registerViewModel.postRegister(data)
+                                                observeData()
+                                            }
+
+                                            override fun onError(
+                                                errorCode: String?,
+                                                errorMsg: String?
+                                            ) {
+                                                Toast.makeText(
+                                                    this@RegisterActivity,
+                                                    "Create Home error->$errorMsg",
+                                                    Toast.LENGTH_LONG
+                                                ).show()
+                                                Log.e("gagal buat home", "")
+                                            }
+
+                                        }
+                                    )
+                                }
+
+                                override fun onError(code: String?, error: String) {
+                                    Toast.makeText(
+                                        this@RegisterActivity,
+                                        "login tuya error->$error",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    showError(error)
+                                }
+                            })
                 } else {
                     binding.TVError.visibility = View.VISIBLE
                     binding.TVError.text = getString(R.string.TnC)
@@ -153,37 +166,27 @@ class RegisterActivity : AppCompatActivity() {
                         }
                     }
                     is Resource.Error -> {
-                        TuyaHomeSdk.newHomeInstance(Prefs.getString(HOME_ID, "").toLong())
-                            .dismissHome(object : IResultCallback {
-                                override fun onSuccess() {
-                                    TuyaHomeSdk.getUserInstance().logout(object : ILogoutCallback {
-                                        override fun onSuccess() {
-                                            Prefs.clear()
-                                            binding.PBRegister.visibility = View.GONE
-                                            Log.e("error", "" + results.message.toString())
-                                            showError(results.message.toString())
-                                        }
+                        Log.e("contain", Prefs.contains(HOME_ID).toString())
+                        if (Prefs.contains(HOME_ID)) {
+                            TuyaHomeSdk.newHomeInstance(Prefs.getString(HOME_ID, "").toLong())
+                                .dismissHome(object : IResultCallback {
+                                    override fun onSuccess() {
+                                        showError(results.message.toString())
+                                    }
 
-                                        override fun onError(code: String?, error: String?) {
-                                            Toast.makeText(
-                                                this@RegisterActivity,
-                                                "$error",
-                                                Toast.LENGTH_LONG
-                                            ).show()
-                                        }
+                                    override fun onError(code: String?, error: String) {
+                                        Toast.makeText(
+                                            this@RegisterActivity,
+                                            "$error",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        showError(error)
+                                    }
 
-                                    })
-                                }
-
-                                override fun onError(code: String?, error: String?) {
-                                    Toast.makeText(
-                                        this@RegisterActivity,
-                                        "$error",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                }
-
-                            })
+                                })
+                        } else {
+                            showError(results.message.toString())
+                        }
                     }
                 }
 
@@ -200,6 +203,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun showError(errorMsg: String) {
         Log.e("last result", errorMsg)
+        binding.PBRegister.visibility = View.GONE
         binding.TVError.visibility = View.VISIBLE
         binding.TVError.text = errorMsg
     }

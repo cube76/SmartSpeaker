@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Indi</string>
+    <string name="base_url">https://gateway.infidea.id/</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -50,4 +51,8 @@
     <string name="rekaman_suara">Rekaman Suara</string>
     <string name="default_skill">Default</string>
     <string name="pengingat_azan">Pengingat Adzan</string>
+    <string name="telusuri_keahlian">Telusuri Keahlian</string>
+    <string name="asisten_harian">Asisten Harian</string>
+    <string name="konten_edukasi_dan_berita">Konten Edukasi dan Berita</string>
+    <string name="islami">Islami</string>
 </resources>

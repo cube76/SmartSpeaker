@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/IV_looking_for_wifi"
         android:layout_width="300dp"
         android:layout_height="244dp"
         android:src="@drawable/pairing_wifi"

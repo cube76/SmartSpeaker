@@ -41,26 +41,28 @@
         app:layout_constraintTop_toBottomOf="@+id/IV_recording" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_record_finish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:visibility="gone"
         android:background="@drawable/btn_yellow"
-        android:text="Button"
+        android:text="Selesai Merekam"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="@+id/button4" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_rerecord"
+        app:layout_constraintEnd_toEndOf="@+id/btn_rerecord"
+        app:layout_constraintStart_toStartOf="@+id/btn_rerecord" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btn_rerecord"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:visibility="gone"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="100dp"
         android:background="@drawable/btn_black_outline"
-        android:text="Button"
+        android:text="Ulangi Rekaman"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

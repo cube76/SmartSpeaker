@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,10 +18,15 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
+import com.kizitonwose.calendarview.utils.next
+import com.kizitonwose.calendarview.utils.previous
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.domain.model.Event
 import com.mqa.smartspeaker.core.utils.*
 import com.mqa.smartspeaker.databinding.*
+import com.mqa.smartspeaker.ui.dialog.InputPasswordWifiDialog
+import com.mqa.smartspeaker.ui.dialog.SkillInfoDialog
+import com.mqa.smartspeaker.ui.pairing.PairingActivity
 import com.pixplicity.easyprefs.library.Prefs
 import java.time.LocalDate
 import java.time.YearMonth

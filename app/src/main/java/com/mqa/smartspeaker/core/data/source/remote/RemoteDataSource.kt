@@ -5,10 +5,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiResponse
 import com.mqa.smartspeaker.core.data.source.remote.network.ApiService
-import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
-import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.*
 import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
-import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -59,12 +57,137 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getListSkill(authHeader:String): Flow<ApiResponse<List<Skills>?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getListSkill(authHeader)
+                Log.e("respon",""+response.body())
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegularResponse>() {}.type
+                    var errorResponse: RegularResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getListSkillFavourite(authHeader:String): Flow<ApiResponse<List<Skills>?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getListSkillFavourite(authHeader)
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegularResponse>() {}.type
+                    var errorResponse: RegularResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getListSkillCategory(authHeader:String, category: String): Flow<ApiResponse<List<Skills>?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getListSkillCategory(authHeader, category)
+                Log.e("respon",""+response.body())
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegularResponse>() {}.type
+                    var errorResponse: RegularResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun postUpdateProfile(authHeader:String, request: UpdateProfileRequest): Flow<ApiResponse<RegularResponse?>> {
         //get data from remote api
         return flow {
             try {
                 val response = apiService.postUpdateProfile(authHeader, request)
 //                val dataArray = response.places
+                Log.e("respon",""+response)
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegisterResponse>() {}.type
+                    var errorResponse: RegisterResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getSkillInfoState(authHeader:String, skillId: SkillInfoState): Flow<ApiResponse<SkillInfoStateResponse?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getSkillInfoState(authHeader, skillId)
+                Log.e("respon",""+response)
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegisterResponse>() {}.type
+                    var errorResponse: RegisterResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun setSkillInfoState(authHeader:String, skill: SetSkillInfo): Flow<ApiResponse<RegularResponse?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.setSkillInfoState(authHeader, skill)
+                Log.e("respon",""+response)
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegisterResponse>() {}.type
+                    var errorResponse: RegisterResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun setSkillFavorite(authHeader:String, skill: SetSkillFavorite): Flow<ApiResponse<RegularResponse?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.setSkillFavorite(authHeader, skill)
                 Log.e("respon",""+response)
                 if (response.isSuccessful){
                     emit(ApiResponse.Success(response.body()))

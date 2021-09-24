@@ -8,28 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.mqa.smartspeaker.MainActivity
-import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.data.Resource
-import com.mqa.smartspeaker.core.data.source.remote.response.LoginResponse
+import com.mqa.smartspeaker.core.data.source.remote.response.User
 import com.mqa.smartspeaker.databinding.FragmentAccountBinding
-import com.mqa.smartspeaker.databinding.FragmentDeviceBinding
 import com.mqa.smartspeaker.ui.changePassword.ChangePasswordActivity
 import com.mqa.smartspeaker.ui.changeProfile.ChangeProfileActivity
-import com.mqa.smartspeaker.ui.dialog.SuccessDialogForgetPass
-import com.mqa.smartspeaker.ui.intro.Intro2Activity
 import com.mqa.smartspeaker.ui.login.LoginActivity
-import com.mqa.smartspeaker.ui.login.LoginActivity.Companion.EMAIL
-import com.mqa.smartspeaker.ui.login.LoginViewModel
-import com.mqa.smartspeaker.ui.register.RegisterActivity
 import com.pixplicity.easyprefs.library.Prefs
-import com.tuya.smart.android.user.api.ILoginCallback
-import com.tuya.smart.android.user.bean.User
+import com.tuya.smart.android.user.api.ILogoutCallback
 import com.tuya.smart.home.sdk.TuyaHomeSdk
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,9 +38,9 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
-        accountViewModel.getUser("Bearer "+Prefs.getString(LoginActivity.TOKEN, ""))
+        accountViewModel.getUser("Bearer " + Prefs.getString(LoginActivity.TOKEN, ""))
         observeDataUser()
-        
+
         binding.groupEdit.setAllOnClickListener(View.OnClickListener {
             val intent = Intent(activity, ChangeProfileActivity::class.java)
             intent.putExtra("email", email)
@@ -72,8 +62,25 @@ class AccountFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-            Prefs.clear()
-            activity?.finish()
+            TuyaHomeSdk.getUserInstance()
+                .logout(object : ILogoutCallback {
+                    override fun onSuccess() {
+                        Prefs.clear()
+                        activity?.finish()
+                    }
+
+                    override fun onError(
+                        code: String?,
+                        error: String?
+                    ) {
+                        Toast.makeText(
+                            requireActivity(),
+                            "$error",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                })
         }
     }
 
@@ -107,7 +114,7 @@ class AccountFragment : Fragment() {
         }
     }
 
-    private fun showSuccess(result: com.mqa.smartspeaker.core.data.source.remote.response.User) {
+    private fun showSuccess(result: User) {
 //        Prefs.putString(LoginActivity.TOKEN, result.token)
         email = result.user.email
         firstName = result.user.first_name
@@ -115,14 +122,13 @@ class AccountFragment : Fragment() {
         profileImage = result.user.profile_image
 
         binding.TVUserEmail.text = email
-        binding.TVUserName.text = firstName + " " + lastName
-        Glide.with(this).load(profileImage).diskCacheStrategy(DiskCacheStrategy.NONE )
+        binding.TVUserName.text = "$firstName $lastName"
+        Glide.with(this).load(profileImage).diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true).into(binding.IVProfileImage)
         binding.PBAccount.visibility = View.GONE
     }
 
     private fun showError(errorMsg: String) {
-        Log.e("last result", errorMsg)
         Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_LONG).show()
     }
 

@@ -1,9 +1,6 @@
 package com.mqa.smartspeaker.core.domain.usecase
 
-import com.mqa.smartspeaker.core.data.source.remote.request.LoginRequest
-import com.mqa.smartspeaker.core.data.source.remote.request.RecoveryPasswordRequest
-import com.mqa.smartspeaker.core.data.source.remote.request.RegisterRequest
-import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
+import com.mqa.smartspeaker.core.data.source.remote.request.*
 import com.mqa.smartspeaker.core.domain.repository.ISmartSpeakerRepository
 import javax.inject.Inject
 
@@ -16,6 +13,12 @@ class SmartSpeakerInteractor @Inject constructor(private val ssRepository: ISmar
     override suspend fun postUpdateProfile(authHeader:String, updateProfileRequest: UpdateProfileRequest) = ssRepository.postUpdateProfile(authHeader,updateProfileRequest)
     override suspend fun getVerifyEmail(email:String,verificationCode: Int) = ssRepository.getVerifyEmail(email,verificationCode)
     override suspend fun getUser(authHeader:String) = ssRepository.getUser(authHeader)
+    override suspend fun getSkillInfoState(authHeader:String, skillId: SkillInfoState) = ssRepository.getSkillInfoState(authHeader, skillId)
+    override suspend fun setSkillInfoState(authHeader:String, skill: SetSkillInfo) = ssRepository.setSkillInfoState(authHeader, skill)
+    override suspend fun setSkillFavorite(authHeader:String, skill: SetSkillFavorite) = ssRepository.setSkillFavorite(authHeader, skill)
+    override suspend fun getListSkill(authHeader:String) = ssRepository.getListSkill(authHeader)
+    override suspend fun getListSkillFavourite(authHeader:String) = ssRepository.getListSkillFavourite(authHeader)
+    override suspend fun getListSkillCategory(authHeader:String, category: String) = ssRepository.getListSkillCategory(authHeader, category)
     override suspend fun getLogin(loginRequest: LoginRequest) = ssRepository.getLogin(loginRequest)
     override suspend fun postForgetPassword(email: RecoveryPasswordRequest) = ssRepository.postForgetPassword(email)
     override suspend fun postCheckForgetPasswordCode(recoveryPasswordRequest: RecoveryPasswordRequest) = ssRepository.postCheckForgetPasswordCode(recoveryPasswordRequest)

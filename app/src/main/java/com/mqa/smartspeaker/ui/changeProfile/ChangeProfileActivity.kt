@@ -9,13 +9,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.view.View.*
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.mqa.smartspeaker.BuildConfig.BASE_URL
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
 import com.mqa.smartspeaker.core.data.source.remote.response.RegularResponse
@@ -25,6 +26,7 @@ import com.mqa.smartspeaker.ui.login.LoginActivity
 import com.pixplicity.easyprefs.library.Prefs
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.InputStream
+
 
 @AndroidEntryPoint
 class ChangeProfileActivity : AppCompatActivity() {
@@ -55,6 +57,22 @@ class ChangeProfileActivity : AppCompatActivity() {
         binding.TVLastName.setText(lastName)
         Glide.with(this).load(profileImage).diskCacheStrategy(DiskCacheStrategy.NONE )
             .skipMemoryCache(true).into(binding.IVProfileImage)
+
+        binding.TVFirstName.onFocusChangeListener = OnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                binding.IVEditFirstName.visibility = GONE
+            } else {
+                binding.IVEditFirstName.visibility = VISIBLE
+            }
+        }
+
+        binding.TVLastName.onFocusChangeListener = OnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                binding.IVEditLastName.visibility = GONE
+            } else {
+                binding.IVEditLastName.visibility = VISIBLE
+            }
+        }
 
         binding.LLEditPhoto.setOnClickListener {
             pickPhotoDialogSheet.show(supportFragmentManager, "pick_photo")

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.mqa.smartspeaker.R
@@ -26,7 +27,7 @@ class RecordAlarmPersonalFragment : Fragment() {
         _binding = FragmentAlarmPersonalRecordBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
 
-        var record = binding.IVRecording
+        val record = binding.IVRecording
 
         record.setOnTouchListener { v, event ->
             when(event.action){
@@ -40,6 +41,8 @@ class RecordAlarmPersonalFragment : Fragment() {
                 MotionEvent.ACTION_UP -> {
                     record.setImageResource(R.drawable.mic_inactive)
                     record.setBackgroundResource(R.drawable.mic_inactive)
+                    binding.btnRecordFinish.visibility = VISIBLE
+                    binding.btnRerecord.visibility = VISIBLE
                     true
                 }
                 else -> false

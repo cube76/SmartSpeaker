@@ -40,14 +40,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/IV_profile_image"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/login_image"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="2dp"
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 

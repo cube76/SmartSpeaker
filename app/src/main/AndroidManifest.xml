@@ -24,9 +24,12 @@
         android:supportsRtl="true"
         android:theme="@style/NoActionBar"
         tools:replace="android:allowBackup,android:supportsRtl">
-        <activity android:name=".ui.skill.azan.AzanReminderActivity"></activity>
+        <activity android:name=".ui.pickFavoriteSkill.PickFavoriteActivity"></activity>
+        <activity android:name=".ui.skill.WhatSkillActivity" />
+        <activity android:name=".ui.skill.holyBookRead.QuranActivity" />
+        <activity android:name=".ui.skill.azan.AzanReminderActivity" />
         <activity android:name=".ui.changePassword.ChangePasswordActivity" />
-        <activity android:name=".ui.skill.scheduleManagement.ScheduleManagementActivity"></activity>
+        <activity android:name=".ui.skill.scheduleManagement.ScheduleManagementActivity" />
         <activity android:name=".ui.skill.alarmPersonal.AlarmPersonalActivity" />
         <activity android:name=".ui.changeProfile.ChangeProfileActivity" />
 

@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/IV_looking_for_wifi"
         android:layout_width="129dp"
         android:layout_height="144dp"
         android:src="@drawable/lamp_icon"

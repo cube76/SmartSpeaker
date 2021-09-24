@@ -6,12 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/black_primary">
 
-
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="129dp"
-        android:layout_height="144dp"
-        android:src="@drawable/exo_ic_pause_circle_filled"
+        android:id="@+id/IV_looking_for_wifi"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

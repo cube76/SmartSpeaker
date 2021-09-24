@@ -7,288 +7,6 @@
     android:background="@color/black_primary"
     tools:context=".ui.skill.SkillFragment">
 
-
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView25"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/skill_img_2"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintEnd_toStartOf="@+id/imageView24"
-                app:layout_constraintStart_toStartOf="@+id/imageView20"
-                app:layout_constraintTop_toBottomOf="@+id/imageView20"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView31"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
-                android:foreground="?attr/selectableItemBackground"
-                android:src="@drawable/skill_img_3"
-                app:layout_constraintEnd_toEndOf="@+id/alarm_personal"
-                app:layout_constraintStart_toStartOf="@+id/imageView24"
-                app:layout_constraintTop_toBottomOf="@+id/alarm_personal" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/pengelolaan_jadwal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
-                android:foreground="?attr/selectableItemBackground"
-                android:scaleType="centerCrop"
-                android:src="@drawable/skill_img_1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/alarm_personal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/skill_img_1"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintEnd_toEndOf="@+id/imageView24"
-                app:layout_constraintStart_toStartOf="@+id/imageView25"
-                app:layout_constraintTop_toBottomOf="@+id/imageView24"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView24"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/skill_img_3"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintEnd_toEndOf="@+id/imageView21"
-                app:layout_constraintStart_toStartOf="@+id/imageView21"
-                app:layout_constraintTop_toBottomOf="@+id/imageView21" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView20"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
-                android:foreground="?attr/selectableItemBackground"
-                android:src="@drawable/skill_img_3"
-                app:layout_constraintEnd_toStartOf="@+id/imageView21"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pengelolaan_jadwal" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView32"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/skill_img_1"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintEnd_toEndOf="@+id/imageView31"
-                app:layout_constraintStart_toStartOf="@+id/imageView23"
-                app:layout_constraintTop_toBottomOf="@+id/imageView23"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView33"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/skill_img_1"
-                android:foreground="?attr/selectableItemBackground"
-                app:layout_constraintEnd_toEndOf="@+id/imageView31"
-                app:layout_constraintStart_toStartOf="@+id/imageView23"
-                app:layout_constraintTop_toBottomOf="@+id/imageView32"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView21"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:scaleType="centerCrop"
-                android:foreground="?attr/selectableItemBackground"
-                android:src="@drawable/skill_img_2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/imageView20"
-                app:layout_constraintTop_toBottomOf="@+id/pengelolaan_jadwal"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView23"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:scaleType="fitXY"
-                android:foreground="?attr/selectableItemBackground"
-                android:src="@drawable/skill_img_3"
-                app:layout_constraintEnd_toEndOf="@+id/imageView20"
-                app:layout_constraintStart_toStartOf="@+id/alarm_personal"
-                app:layout_constraintTop_toBottomOf="@+id/alarm_personal" />
-
-            <TextView
-                android:id="@+id/textView31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Konten Edukasi \nAnak"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView31"
-                app:layout_constraintStart_toStartOf="@+id/imageView31" />
-
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Tanya Indi"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView20"
-                app:layout_constraintStart_toStartOf="@+id/imageView20" />
-
-            <TextView
-                android:id="@+id/textView35"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Streaming \nMusik"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView25"
-                app:layout_constraintStart_toStartOf="@+id/imageView25" />
-
-            <TextView
-                android:id="@+id/textView51"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Membacakan Ayat \nA,-Qur'an"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView32"
-                app:layout_constraintStart_toStartOf="@+id/imageView32" />
-
-            <TextView
-                android:id="@+id/textView54"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Pengingat Jadwal Adzan"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/imageView32" />
-
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Timer"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView21"
-                app:layout_constraintStart_toStartOf="@+id/imageView21" />
-
-            <TextView
-                android:id="@+id/textView37"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Resep"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView24"
-                app:layout_constraintStart_toStartOf="@+id/imageView24" />
-
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Pengelolaan Jadwal"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/pengelolaan_jadwal"
-                app:layout_constraintStart_toStartOf="@+id/pengelolaan_jadwal" />
-
-            <TextView
-                android:id="@+id/textView52"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Membacakan \nBerita"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:translationZ="90dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView23"
-                app:layout_constraintStart_toStartOf="@+id/imageView23" />
-
-            <TextView
-                android:id="@+id/textView53"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Alarm Personal"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/alarm_personal"
-                app:layout_constraintStart_toStartOf="@+id/alarm_personal" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-
     <TextView
         android:id="@+id/textView29"
         android:layout_width="wrap_content"
@@ -310,4 +28,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_skill"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView29">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RV_skill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_skill"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
