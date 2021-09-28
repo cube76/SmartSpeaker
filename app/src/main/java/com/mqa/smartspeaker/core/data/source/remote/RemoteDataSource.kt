@@ -18,16 +18,19 @@ import javax.inject.Singleton
 @Singleton
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
 
-    suspend fun getAllTourism(): Flow<ApiResponse<List<TourismResponse>>> {
+    suspend fun getAvatarList(authHeader:String): Flow<ApiResponse<List<AvatarResponse>?>> {
         //get data from remote api
         return flow {
             try {
-                val response = apiService.getList()
-                val dataArray = response.places
-                if (dataArray.isNotEmpty()){
-                    emit(ApiResponse.Success(response.places))
+                val response = apiService.getAvatarList(authHeader)
+                Log.e("respon",""+response.body())
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
                 } else {
-                    emit(ApiResponse.Empty)
+                    val gson = Gson()
+                    val type = object : TypeToken<RegularResponse>() {}.type
+                    var errorResponse: RegularResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
                 }
             } catch (e : Exception){
                 emit(ApiResponse.Error(e.toString()))

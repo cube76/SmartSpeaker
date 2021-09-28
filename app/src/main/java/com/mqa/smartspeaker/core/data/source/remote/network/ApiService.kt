@@ -19,6 +19,9 @@ interface ApiService {
     @GET("api/skillsFavourite")
     suspend fun getListSkillFavourite(@Header("Authorization") authHeader:String): Response<List<Skills>>
 
+    @GET("api/avatarList")
+    suspend fun getAvatarList(@Header("Authorization") authHeader:String): Response<List<AvatarResponse>>
+
     @GET("api/user")
     suspend fun getUser(@Header("Authorization") authHeader:String): Response<User>
 

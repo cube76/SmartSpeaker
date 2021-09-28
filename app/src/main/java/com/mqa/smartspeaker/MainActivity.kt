@@ -82,6 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     fun openHome(){
         var mainFragment: HomeFragment = HomeFragment()
+        supportFragmentManager.beginTransaction().
+        remove(supportFragmentManager.findFragmentById(R.id.fragment_container)!!).commit()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mainFragment)
             .commit()
         binding.navView.IVHome.setImageResource(R.drawable.home_yellow_icon)
@@ -91,6 +93,8 @@ class MainActivity : AppCompatActivity() {
 
     fun openAccount(){
         var accountFragment: AccountFragment = AccountFragment()
+        supportFragmentManager.beginTransaction().
+        remove(supportFragmentManager.findFragmentById(R.id.fragment_container)!!).commit()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, accountFragment)
             .commit()
         binding.navView.IVAccount.setImageResource(R.drawable.account_yellow_icon)
@@ -100,6 +104,8 @@ class MainActivity : AppCompatActivity() {
 
     fun openDevice(){
         var deviceFragment: DeviceFragment = DeviceFragment()
+        supportFragmentManager.beginTransaction().
+        remove(supportFragmentManager.findFragmentById(R.id.fragment_container)!!).commit()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, deviceFragment)
             .commit()
         binding.navView.IVDevice.setImageResource(R.drawable.device_yellow_icon)
@@ -109,6 +115,8 @@ class MainActivity : AppCompatActivity() {
 
     fun openSkill(){
         var mainFragment: SkillFragment = SkillFragment()
+        supportFragmentManager.beginTransaction().
+        remove(supportFragmentManager.findFragmentById(R.id.fragment_container)!!).commit()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container, mainFragment)
             .commit()
         binding.navView.IVSkill.setImageResource(R.drawable.skill_yellow_icon)
@@ -139,7 +147,6 @@ class MainActivity : AppCompatActivity() {
         binding.navView.IVSkillDot.visibility = View.GONE
         binding.navView.TVSkill.setTextColor(ContextCompat.getColor(applicationContext, R.color.white))
     }
-
 
     fun onRadioButtonClicked(view: View) {
         if (view is RadioButton) {

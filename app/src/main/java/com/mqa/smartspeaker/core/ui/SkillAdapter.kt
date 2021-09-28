@@ -23,7 +23,7 @@ import com.mqa.smartspeaker.ui.skill.WhatSkillActivity.Companion.SKILL_IMAGE
 import com.mqa.smartspeaker.ui.skill.WhatSkillActivity.Companion.SKILL_NAME
 import com.pixplicity.easyprefs.library.Prefs
 
-class SkillAdapter(context: Context, val type: Int) : RecyclerView.Adapter<SkillAdapter.ViewHolder>() {
+class   SkillAdapter(context: Context, val type: Int) : RecyclerView.Adapter<SkillAdapter.ViewHolder>() {
     var data: ArrayList<Skills> = arrayListOf()
     private var mContext = context
 
@@ -71,7 +71,6 @@ class SkillAdapter(context: Context, val type: Int) : RecyclerView.Adapter<Skill
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val bean = data[position]
-        Log.e("data", data.toString())
         holder.tvName.text = bean.name
         Glide.with(mContext)
             .load("${mContext.getString(R.string.base_url)}images/banner_skills/${bean.image}")

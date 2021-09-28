@@ -123,13 +123,18 @@ class AccountFragment : Fragment() {
 
         binding.TVUserEmail.text = email
         binding.TVUserName.text = "$firstName $lastName"
-        Glide.with(this).load(profileImage).diskCacheStrategy(DiskCacheStrategy.NONE)
-            .skipMemoryCache(true).into(binding.IVProfileImage)
+        Glide.with(this).load(profileImage).into(binding.IVProfileImage)
         binding.PBAccount.visibility = View.GONE
     }
 
     private fun showError(errorMsg: String) {
         Toast.makeText(requireContext(), errorMsg, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        accountViewModel.getUser("Bearer " + Prefs.getString(LoginActivity.TOKEN, ""))
+        observeDataUser()
     }
 
 }

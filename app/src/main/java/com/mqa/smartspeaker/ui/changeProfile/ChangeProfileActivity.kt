@@ -17,11 +17,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.UpdateProfileRequest
+import com.mqa.smartspeaker.core.data.source.remote.response.AvatarResponse
 import com.mqa.smartspeaker.core.data.source.remote.response.RegularResponse
+import com.mqa.smartspeaker.core.ui.SkillAdapter
 import com.mqa.smartspeaker.core.utils.encodeImage
 import com.mqa.smartspeaker.databinding.ActivityChangeProfileBinding
+import com.mqa.smartspeaker.databinding.FrameAvatarBinding
 import com.mqa.smartspeaker.ui.login.LoginActivity
 import com.pixplicity.easyprefs.library.Prefs
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,12 +35,14 @@ import java.io.InputStream
 @AndroidEntryPoint
 class ChangeProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChangeProfileBinding
+    private lateinit var binding2: FrameAvatarBinding
 
     val REQUEST_PERMISSION = 100
     val REQUEST_IMAGE_CAPTURE = 1
     val REQUEST_PICK_IMAGE = 2
     private val pickPhotoDialogSheet = PickPhotoDialogSheet()
     private val changeProfileViewModel: ChangeProfileViewModel by viewModels()
+    lateinit var adapter: AvatarAdapter
 
     var encodedImage: String = ""
     private val id = Prefs.getInt(LoginActivity.USER_ID, 0)
@@ -44,19 +50,21 @@ class ChangeProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChangeProfileBinding.inflate(layoutInflater)
+        binding2 = FrameAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        adapter = AvatarAdapter()
+//        binding2.RVAvatar.adapter = adapter
 
         binding.include6.TVTitle.text = "Profile Saya"
         val email:String = intent.getStringExtra("email").toString()
         val firstName:String = intent.getStringExtra("firstName").toString()
         val lastName:String = intent.getStringExtra("lastName").toString()
         val profileImage:String = intent.getStringExtra("profileImage").toString()
-        Log.e("email", firstName)
+        
         binding.TVEmail.setText(email)
         binding.TVFirstName.setText(firstName)
         binding.TVLastName.setText(lastName)
-        Glide.with(this).load(profileImage).diskCacheStrategy(DiskCacheStrategy.NONE )
-            .skipMemoryCache(true).into(binding.IVProfileImage)
+        Glide.with(this).load(profileImage).into(binding.IVProfileImage)
 
         binding.TVFirstName.onFocusChangeListener = OnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
@@ -89,62 +97,72 @@ class ChangeProfileActivity : AppCompatActivity() {
 
             changeProfileViewModel.postUpdateProfile("Bearer "+Prefs.getString(LoginActivity.TOKEN, ""),data)
             observeData()
-
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        checkCameraPermission()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        checkCameraPermission()
+//    }
+//
+//    private fun checkCameraPermission() {
+//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+//            != PackageManager.PERMISSION_GRANTED
+//        ) {
+//            ActivityCompat.requestPermissions(
+//                this,
+//                arrayOf(Manifest.permission.CAMERA),
+//                REQUEST_PERMISSION
+//            )
+//        }
+//    }
 
-    private fun checkCameraPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.CAMERA),
-                REQUEST_PERMISSION
-            )
-        }
-    }
 
-    fun openCamera() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
-            intent.resolveActivity(packageManager)?.also {
-                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
-            }
-        }
+//    fun openCamera() {
+//        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
+//            intent.resolveActivity(packageManager)?.also {
+//                startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+//            }
+//        }
+//        pickPhotoDialogSheet.dismiss()
+//    }
+//
+//    fun openGallery() {
+//        Intent(Intent.ACTION_GET_CONTENT).also { intent ->
+//            intent.type = "image/*"
+//            intent.resolveActivity(packageManager)?.also {
+//                startActivityForResult(intent, REQUEST_PICK_IMAGE)
+//            }
+//        }
+//        pickPhotoDialogSheet.dismiss()
+//    }
+
+    fun changeImage(image: String){
+        Glide.with(this)
+            .load("${this.getString(R.string.base_url)}images/avatars_indi/${image}")
+            .into(binding.IVProfileImage)
+
+        encodedImage = image
+
         pickPhotoDialogSheet.dismiss()
     }
 
-    fun openGallery() {
-        Intent(Intent.ACTION_GET_CONTENT).also { intent ->
-            intent.type = "image/*"
-            intent.resolveActivity(packageManager)?.also {
-                startActivityForResult(intent, REQUEST_PICK_IMAGE)
-            }
-        }
-        pickPhotoDialogSheet.dismiss()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            if (requestCode == REQUEST_IMAGE_CAPTURE) {
-                val bitmap = data?.extras?.get("data") as Bitmap
-                binding.IVProfileImage.setImageBitmap(bitmap)
-                encodedImage = encodeImage(bitmap)!!
-            } else if (requestCode == REQUEST_PICK_IMAGE) {
-                val uri = data?.data
-                binding.IVProfileImage.setImageURI(uri)
-                val imageStream: InputStream? = contentResolver.openInputStream(uri!!)
-                val selectedImage = BitmapFactory.decodeStream(imageStream)
-                encodedImage = encodeImage(selectedImage)!!
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == RESULT_OK) {
+//            if (requestCode == REQUEST_IMAGE_CAPTURE) {
+//                val bitmap = data?.extras?.get("data") as Bitmap
+//                binding.IVProfileImage.setImageBitmap(bitmap)
+//                encodedImage = encodeImage(bitmap)!!
+//            } else if (requestCode == REQUEST_PICK_IMAGE) {
+//                val uri = data?.data
+//                binding.IVProfileImage.setImageURI(uri)
+//                val imageStream: InputStream? = contentResolver.openInputStream(uri!!)
+//                val selectedImage = BitmapFactory.decodeStream(imageStream)
+//                encodedImage = encodeImage(selectedImage)!!
+//            }
+//        }
+//    }
 
     private fun observeData() {
         with(binding) {

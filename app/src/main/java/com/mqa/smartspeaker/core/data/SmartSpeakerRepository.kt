@@ -44,6 +44,18 @@ class SmartSpeakerRepository @Inject constructor(
         }
     }
 
+    override suspend fun getAvatarList(authHeader:String): Flow<Resource<List<AvatarResponse>>> {
+        return remoteDataSource.getAvatarList(authHeader).map {
+            when (it) {
+                is ApiResponse.Success -> {
+                    Resource.Success(it.data!!)
+                }
+                is ApiResponse.Empty -> Resource.Error(it.toString())
+                is ApiResponse.Error -> Resource.Error(it.message)
+            }
+        }
+    }
+
     override suspend fun setSkillInfoState(authHeader:String, skill: SetSkillInfo): Flow<Resource<RegularResponse>> {
         return remoteDataSource.setSkillInfoState(authHeader, skill).map {
             when (it) {

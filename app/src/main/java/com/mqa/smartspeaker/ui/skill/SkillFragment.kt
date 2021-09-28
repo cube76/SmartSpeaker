@@ -31,7 +31,7 @@ class SkillFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSkillBinding.inflate(inflater, container, false)
-        binding.RVSkill.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            binding.RVSkill.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         adapter = SkillAdapter(requireContext(), FULL_LIST)
         binding.RVSkill.adapter = adapter
