@@ -21,6 +21,7 @@ interface ISmartSpeakerRepository {
     suspend fun getUser(authHeader:String): Flow<Resource<User>>
     suspend fun getAvatarList(authHeader:String): Flow<Resource<List<AvatarResponse>>>
     suspend fun getSkillInfoState(authHeader:String, skillId: SkillInfoState): Flow<Resource<SkillInfoStateResponse>>
+    suspend fun getSkillFavoriteState(authHeader:String, skillId: SkillInfoState): Flow<Resource<SkillFavoriteStateResponse>>
     suspend fun setSkillInfoState(authHeader:String, skill: SetSkillInfo): Flow<Resource<RegularResponse>>
     suspend fun setSkillFavorite(authHeader:String, skill: SetSkillFavorite): Flow<Resource<RegularResponse>>
     suspend fun getListSkill(authHeader:String): Flow<Resource<List<Skills>>>

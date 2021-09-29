@@ -28,6 +28,9 @@ interface ApiService {
     @POST("api/skillInfoState")
     suspend fun getSkillInfoState(@Header("Authorization") authHeader:String, @Body requestBody: SkillInfoState): Response<SkillInfoStateResponse>
 
+    @POST("api/skillFavoriteState")
+    suspend fun getSkillFavoriteState(@Header("Authorization") authHeader:String, @Body requestBody: SkillInfoState): Response<SkillFavoriteStateResponse>
+
     @POST("api/setSkillInfoState")
     suspend fun setSkillInfoState(@Header("Authorization") authHeader:String, @Body requestBody: SetSkillInfo): Response<RegularResponse>
 

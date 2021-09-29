@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.SetSkillFavorite
+import com.mqa.smartspeaker.core.data.source.remote.request.SkillInfoState
 import com.mqa.smartspeaker.core.data.source.remote.response.Skills
 import com.mqa.smartspeaker.core.ui.SkillAdapter
 import com.mqa.smartspeaker.core.ui.SkillAdapter.Companion.CATEGORY_LIST
 import com.mqa.smartspeaker.databinding.ActivityPickFavoriteBinding
+import com.mqa.smartspeaker.ui.dialog.AddRemoveSkillInfoDialog
+import com.mqa.smartspeaker.ui.dialog.RemoveSkillFavoriteDialog
 import com.mqa.smartspeaker.ui.login.LoginActivity
 import com.pixplicity.easyprefs.library.Prefs
 import com.thekhaeng.recyclerviewmargin.LayoutMarginDecoration
@@ -28,6 +31,7 @@ class PickFavoriteActivity : AppCompatActivity() {
     lateinit var skillAdapter: SkillAdapter
     lateinit var kontenAdapter: SkillAdapter
     lateinit var islamiAdapter: SkillAdapter
+    val dialog= AddRemoveSkillInfoDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,27 +146,33 @@ class PickFavoriteActivity : AppCompatActivity() {
         }
     }
 
-    fun observeSetFavorite(skill_id: Int, favorite: Boolean) {
-        pickFavoriteViewModel.setSkillFavorite("Bearer " + Prefs.getString(LoginActivity.TOKEN, ""), SetSkillFavorite(skill_id,favorite))
+    fun observeGetFavorite(skillId: Int) {
+        pickFavoriteViewModel.getSkillFavoriteState(
+            "Bearer " + Prefs.getString(LoginActivity.TOKEN, ""),
+            SkillInfoState(skillId)
+        )
         with(binding) {
-            pickFavoriteViewModel.setSkillFavorite.observe(this@PickFavoriteActivity, { results ->
-                Log.e("result0 konten", results.data.toString())
+            pickFavoriteViewModel.getSkillFavoriteState.observe(this@PickFavoriteActivity, { results ->
+                Log.e(" cek id", skillId.toString())
                 when (results) {
                     is Resource.Loading -> {
                         binding.PBPickSkill.visibility = VISIBLE
                     }
                     is Resource.Success -> {
-                        Toast.makeText(this@PickFavoriteActivity, results.data?.message, Toast.LENGTH_LONG).show()
-                        finish()
                         binding.PBPickSkill.visibility = GONE
+                        Prefs.putBoolean("state_favorite", results.data?.favorite!!)
+
+                        dialog.show(this@PickFavoriteActivity.supportFragmentManager, "dialog_favorite")
                     }
                     is Resource.Error -> {
                         binding.PBPickSkill.visibility = GONE
-                        Toast.makeText(this@PickFavoriteActivity, results.message, Toast.LENGTH_LONG).show()
+//                        Toast.makeText(requireContext(), results.message, Toast.LENGTH_LONG)
+//                            .show()
                         Log.e("error", "" + results.message.toString())
                     }
                 }
             })
         }
     }
+
 }

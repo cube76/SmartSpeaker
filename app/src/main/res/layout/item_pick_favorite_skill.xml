@@ -11,14 +11,14 @@
         android:id="@+id/IV_skill_image"
         android:layout_width="320dp"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:foreground="?attr/selectableItemBackground"
+        android:scaleType="centerCrop"
+        android:src="@drawable/skill_default_img"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="centerCrop"
-        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-        android:src="@drawable/skill_default_img" />
+        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
     <TextView
         android:id="@+id/TV_skill_title"
@@ -34,4 +34,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.mqa.smartspeaker.ui.home
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,13 @@ import com.mqa.smartspeaker.ui.pickFavoriteSkill.PickFavoriteActivity
 import com.mqa.smartspeaker.ui.skill.WhatSkillActivity
 import com.pixplicity.easyprefs.library.Prefs
 
-class FavoriteSkillAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+class FavoriteSkillAdapter(fragments: HomeFragment) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var data: ArrayList<Skills> = arrayListOf()
     var string: ArrayList<String> = arrayListOf()
     lateinit var context: Context
+    var state: Boolean = false
+    var fragment = fragments
 
     companion object {
         private const val ITEM_FOOTER = 0
@@ -49,6 +53,10 @@ class FavoriteSkillAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     Prefs.putString(WhatSkillActivity.SKILL_DESC, data[holder.bindingAdapterPosition].description)
                     Prefs.putString(WhatSkillActivity.SKILL_IMAGE, data[holder.bindingAdapterPosition].image)
                 }
+                holder.ivRemove.setOnClickListener {
+                    fragment.removeFavoriteSkill()
+                    Prefs.putInt(WhatSkillActivity.SKILL_ID, data[holder.bindingAdapterPosition].id)
+                }
                 return holder
             }
             ITEM_FOOTER -> {
@@ -78,12 +86,20 @@ class FavoriteSkillAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             Glide.with(context)
                 .load("${context.getString(R.string.base_url)}images/banner_skills/${bean.image}")
                 .into(holder.ivSkill)
+
+            if (state){
+                holder.ivRemove.visibility = View.VISIBLE
+            }else{
+                holder.ivRemove.visibility = View.GONE
+            }
         }
     }
 
     class ViewHolderMain(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName = itemView.findViewById<TextView>(R.id.TV_skill_title)
         val ivSkill = itemView.findViewById<ImageView>(R.id.IV_skill_image)
+        val ivRemove = itemView.findViewById<ImageView>(R.id.IV_remove)
     }
     class ViewFooterHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
 }

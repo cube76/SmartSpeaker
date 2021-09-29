@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.mqa.smartspeaker.core.data.Resource
 import com.mqa.smartspeaker.core.data.source.remote.request.SetSkillFavorite
 import com.mqa.smartspeaker.core.data.source.remote.request.SetSkillInfo
+import com.mqa.smartspeaker.core.data.source.remote.request.SkillInfoState
 import com.mqa.smartspeaker.core.data.source.remote.response.RegularResponse
+import com.mqa.smartspeaker.core.data.source.remote.response.SkillFavoriteStateResponse
 import com.mqa.smartspeaker.core.data.source.remote.response.SkillInfoStateResponse
 import com.mqa.smartspeaker.core.data.source.remote.response.Skills
 import com.mqa.smartspeaker.core.domain.usecase.SmartSpeakerUseCase
@@ -20,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class PickFavoriteViewModel @Inject constructor(private val smartSpeakerUseCase: SmartSpeakerUseCase) : ViewModel(){
     lateinit var getListSkillCategory: LiveData<Resource<List<Skills>>>
-    lateinit var setSkillFavorite: LiveData<Resource<RegularResponse>>
+    lateinit var getSkillFavoriteState: LiveData<Resource<SkillFavoriteStateResponse>>
 
     fun getListSkillAsisten(authHeader:String) = viewModelScope.launch {
         getListSkillCategory = smartSpeakerUseCase.getListSkillCategory(authHeader, "Asisten Harian")
@@ -47,12 +49,13 @@ class PickFavoriteViewModel @Inject constructor(private val smartSpeakerUseCase:
             .asLiveData()
     }
 
-    fun setSkillFavorite(authHeader:String, skill: SetSkillFavorite) = viewModelScope.launch {
-        setSkillFavorite = smartSpeakerUseCase.setSkillFavorite(authHeader, skill)
+    fun getSkillFavoriteState(authHeader:String, skill: SkillInfoState) = viewModelScope.launch {
+        getSkillFavoriteState = smartSpeakerUseCase.getSkillFavoriteState(authHeader, skill)
             .onStart {
                 emit(Resource.Loading())
             }
             .catch { exception -> Resource.Error(exception.toString(), null) }
             .asLiveData()
     }
+
 }

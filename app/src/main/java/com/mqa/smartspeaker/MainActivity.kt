@@ -2,6 +2,7 @@ package com.mqa.smartspeaker
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.mqa.smartspeaker.ui.account.AccountFragment
 import com.mqa.smartspeaker.ui.connectSmartSpeaker.ConnectSmartSpeakerActivity
 import com.mqa.smartspeaker.ui.device.DeviceFragment
 import com.mqa.smartspeaker.ui.device.lamp.LampActivity
+import com.mqa.smartspeaker.ui.dialog.AddRemoveSkillInfoDialog
 import com.mqa.smartspeaker.ui.home.HomeFragment
 import com.mqa.smartspeaker.ui.skill.SkillFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +21,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    val dialog= AddRemoveSkillInfoDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -167,4 +170,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
 }

@@ -165,6 +165,27 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getSkillFavoriteState(authHeader:String, skillId: SkillInfoState): Flow<ApiResponse<SkillFavoriteStateResponse?>> {
+        //get data from remote api
+        return flow {
+            try {
+                val response = apiService.getSkillFavoriteState(authHeader, skillId)
+                Log.e("respon",""+response)
+                if (response.isSuccessful){
+                    emit(ApiResponse.Success(response.body()))
+                } else {
+                    val gson = Gson()
+                    val type = object : TypeToken<RegisterResponse>() {}.type
+                    var errorResponse: RegisterResponse = gson.fromJson(response.errorBody()!!.charStream(), type)
+                    emit(ApiResponse.Error(errorResponse.message))
+                }
+            } catch (e : Exception){
+                emit(ApiResponse.Error(e.toString()))
+                Log.e("RemoteDataSource", e.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun setSkillInfoState(authHeader:String, skill: SetSkillInfo): Flow<ApiResponse<RegularResponse?>> {
         //get data from remote api
         return flow {

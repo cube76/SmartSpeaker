@@ -71,16 +71,48 @@
         android:id="@+id/CB_dont_show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:layout_marginBottom="24dp"
         android:buttonTint="@color/black"
         android:text="Jangan Tampilkan Lagi"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/TV_desc_info"
         app:layout_constraintTop_toBottomOf="@+id/TV_desc_info" />
+
+    <LinearLayout
+        android:id="@+id/LL_set_favorite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:visibility="gone"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/TV_desc_info"
+        app:layout_constraintStart_toStartOf="@+id/TV_desc_info"
+        app:layout_constraintTop_toBottomOf="@+id/TV_desc_info">
+
+        <ImageView
+            android:id="@+id/IV_set_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_add_yellow"/>
+
+        <TextView
+            android:id="@+id/TV_set_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hapus dari keahlian"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/PB_skill_info"

@@ -42,6 +42,7 @@
     <string name="lanjut_login">Silahkan lanjutkan Login</string>
     <string name="remove_device">Berhasil Perangkat telah dihapus dari aplikasi</string>
     <string name="hapus_lamp">Apakah kamu yakin akan menghapus Smart Lamp ini dari aplikasi?</string>
+    <string name="hapus_skill">Apakah kamu yakin akan menghapus keahlian ini dari favorit?</string>
     <string name="syarat_dan_layanan">Syarat dan Layanan</string>
     <string name="tentang_indi_smart_speaker">Tentang Indi Smart Speaker</string>
     <string name="kebijakan_privasi">Kebijakan Privasi</string>
@@ -55,4 +56,6 @@
     <string name="asisten_harian">Asisten Harian</string>
     <string name="konten_edukasi_dan_berita">Konten Edukasi dan Berita</string>
     <string name="islami">Islami</string>
+    <string name="remove_favorite">Hapus dari keahlian favorit</string>
+    <string name="add_favorite">Tambahkan ke keahlian favorit</string>
 </resources>

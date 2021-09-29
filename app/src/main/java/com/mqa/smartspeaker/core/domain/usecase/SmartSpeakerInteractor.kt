@@ -15,6 +15,7 @@ class SmartSpeakerInteractor @Inject constructor(private val ssRepository: ISmar
     override suspend fun getUser(authHeader:String) = ssRepository.getUser(authHeader)
     override suspend fun getAvatarList(authHeader:String) = ssRepository.getAvatarList(authHeader)
     override suspend fun getSkillInfoState(authHeader:String, skillId: SkillInfoState) = ssRepository.getSkillInfoState(authHeader, skillId)
+    override suspend fun getSkillFavoriteState(authHeader:String, skillId: SkillInfoState) = ssRepository.getSkillFavoriteState(authHeader, skillId)
     override suspend fun setSkillInfoState(authHeader:String, skill: SetSkillInfo) = ssRepository.setSkillInfoState(authHeader, skill)
     override suspend fun setSkillFavorite(authHeader:String, skill: SetSkillFavorite) = ssRepository.setSkillFavorite(authHeader, skill)
     override suspend fun getListSkill(authHeader:String) = ssRepository.getListSkill(authHeader)

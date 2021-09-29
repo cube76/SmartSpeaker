@@ -1,19 +1,21 @@
 package com.mqa.smartspeaker.core.ui
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mqa.smartspeaker.MainActivity
 import com.mqa.smartspeaker.R
 import com.mqa.smartspeaker.core.data.source.remote.response.Skills
-import com.mqa.smartspeaker.ui.pairing.PairingActivity
+import com.mqa.smartspeaker.ui.dialog.RemoveSkillFavoriteDialog
 import com.mqa.smartspeaker.ui.pickFavoriteSkill.PickFavoriteActivity
 import com.mqa.smartspeaker.ui.skill.WhatSkillActivity
 import com.mqa.smartspeaker.ui.skill.WhatSkillActivity.Companion.SKILL_CATEGORY
@@ -22,6 +24,7 @@ import com.mqa.smartspeaker.ui.skill.WhatSkillActivity.Companion.SKILL_ID
 import com.mqa.smartspeaker.ui.skill.WhatSkillActivity.Companion.SKILL_IMAGE
 import com.mqa.smartspeaker.ui.skill.WhatSkillActivity.Companion.SKILL_NAME
 import com.pixplicity.easyprefs.library.Prefs
+
 
 class   SkillAdapter(context: Context, val type: Int) : RecyclerView.Adapter<SkillAdapter.ViewHolder>() {
     var data: ArrayList<Skills> = arrayListOf()
@@ -55,7 +58,14 @@ class   SkillAdapter(context: Context, val type: Int) : RecyclerView.Adapter<Ski
                     LayoutInflater.from(parent.context).inflate(R.layout.item_pick_favorite_skill, parent, false)
                 )
                 holder.itemView.setOnClickListener {
-                    (parent.context as PickFavoriteActivity).observeSetFavorite(data[holder.bindingAdapterPosition].id, true)
+                    (parent.context as PickFavoriteActivity).observeGetFavorite(data[holder.bindingAdapterPosition].id)
+
+                    Prefs.putInt(SKILL_ID, data[holder.bindingAdapterPosition].id)
+                    Prefs.putString(SKILL_NAME, data[holder.bindingAdapterPosition].name)
+                    Prefs.putString(SKILL_CATEGORY, data[holder.bindingAdapterPosition].category)
+                    Prefs.putString(SKILL_DESC, data[holder.bindingAdapterPosition].description)
+                    Prefs.putString(SKILL_IMAGE, data[holder.bindingAdapterPosition].image)
+                    Prefs.putString(RemoveSkillFavoriteDialog.ASAL, "pick_favorite")
                 }
                 return holder
             }
@@ -74,7 +84,8 @@ class   SkillAdapter(context: Context, val type: Int) : RecyclerView.Adapter<Ski
         holder.tvName.text = bean.name
         Glide.with(mContext)
             .load("${mContext.getString(R.string.base_url)}images/banner_skills/${bean.image}")
-            .into(holder.ivSkill);
+            .into(holder.ivSkill)
+
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
