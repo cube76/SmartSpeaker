@@ -58,6 +58,7 @@ class DeviceAdapter(
                 holder.itemView.setOnClickListener {
                     val intent = Intent(it.context, LampActivity::class.java)
                     intent.putExtra("name", data[holder.bindingAdapterPosition].name)
+                    intent.putExtra("id", data[holder.bindingAdapterPosition].devId)
                     it.context.startActivity(intent)
                     Prefs.putString(DEVICE_ID, data[holder.bindingAdapterPosition].devId)
                 }
